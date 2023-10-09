@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>TechLight - Tech Blog Free HTML CSS Website Template</title>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="author" content="">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+
+    <link rel="stylesheet" type="text/css" href="css/vendor.css">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">		
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+	<symbol id="logo-facebook" xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512">
+		<title>Facebook</title><path fill="currentColor" fill-rule="evenodd" d="M480 257.35c0-123.7-100.3-224-224-224s-224 100.3-224 224c0 111.8 81.9 204.47 189 221.29V322.12h-56.89v-64.77H221V208c0-56.13 33.45-87.16 84.61-87.16c24.51 0 50.15 4.38 50.15 4.38v55.13H327.5c-27.81 0-36.51 17.26-36.51 35v42h62.12l-9.92 64.77H291v156.54c107.1-16.81 189-109.48 189-221.31Z"/>
+  	</symbol>
+  	<symbol id="logo-twitter" xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512">
+		<title>Twitter</title><path fill="currentColor" d="M496 109.5a201.8 201.8 0 0 1-56.55 15.3a97.51 97.51 0 0 0 43.33-53.6a197.74 197.74 0 0 1-62.56 23.5A99.14 99.14 0 0 0 348.31 64c-54.42 0-98.46 43.4-98.46 96.9a93.21 93.21 0 0 0 2.54 22.1a280.7 280.7 0 0 1-203-101.3A95.69 95.69 0 0 0 36 130.4c0 33.6 17.53 63.3 44 80.7A97.5 97.5 0 0 1 35.22 199v1.2c0 47 34 86.1 79 95a100.76 100.76 0 0 1-25.94 3.4a94.38 94.38 0 0 1-18.51-1.8c12.51 38.5 48.92 66.5 92.05 67.3A199.59 199.59 0 0 1 39.5 405.6a203 203 0 0 1-23.5-1.4A278.68 278.68 0 0 0 166.74 448c181.36 0 280.44-147.7 280.44-275.8c0-4.2-.11-8.4-.31-12.5A198.48 198.48 0 0 0 496 109.5Z"/>
+  	</symbol>
+  	<symbol id="logo-pinterest" xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512">
+		<title>Pinterest</title><path fill="currentColor" d="M256.05 32c-123.7 0-224 100.3-224 224c0 91.7 55.2 170.5 134.1 205.2c-.6-15.6-.1-34.4 3.9-51.4c4.3-18.2 28.8-122.1 28.8-122.1s-7.2-14.3-7.2-35.4c0-33.2 19.2-58 43.2-58c20.4 0 30.2 15.3 30.2 33.6c0 20.5-13.1 51.1-19.8 79.5c-5.6 23.8 11.9 43.1 35.4 43.1c42.4 0 71-54.5 71-119.1c0-49.1-33.1-85.8-93.2-85.8c-67.9 0-110.3 50.7-110.3 107.3c0 19.5 5.8 33.3 14.8 43.9c4.1 4.9 4.7 6.9 3.2 12.5c-1.1 4.1-3.5 14-4.6 18c-1.5 5.7-6.1 7.7-11.2 5.6c-31.3-12.8-45.9-47-45.9-85.6c0-63.6 53.7-139.9 160.1-139.9c85.5 0 141.8 61.9 141.8 128.3c0 87.9-48.9 153.5-120.9 153.5c-24.2 0-46.9-13.1-54.7-27.9c0 0-13 51.6-15.8 61.6c-4.7 17.3-14 34.5-22.5 48a225.13 225.13 0 0 0 63.5 9.2c123.7 0 224-100.3 224-224S379.75 32 256.05 32Z"/>
+  	</symbol>
+  	<symbol id="logo-instagram" xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512">
+		<title>Instagram</title><path fill="currentColor" d="M349.33 69.33a93.62 93.62 0 0 1 93.34 93.34v186.66a93.62 93.62 0 0 1-93.34 93.34H162.67a93.62 93.62 0 0 1-93.34-93.34V162.67a93.62 93.62 0 0 1 93.34-93.34h186.66m0-37.33H162.67C90.8 32 32 90.8 32 162.67v186.66C32 421.2 90.8 480 162.67 480h186.66C421.2 480 480 421.2 480 349.33V162.67C480 90.8 421.2 32 349.33 32Z"/><path fill="currentColor" d="M377.33 162.67a28 28 0 1 1 28-28a27.94 27.94 0 0 1-28 28ZM256 181.33A74.67 74.67 0 1 1 181.33 256A74.75 74.75 0 0 1 256 181.33m0-37.33a112 112 0 1 0 112 112a112 112 0 0 0-112-112Z"/>
+  	</symbol>
+  	<symbol id="logo-youtube" xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512">
+		<title>Youtube</title><path fill="currentColor" d="M508.64 148.79c0-45-33.1-81.2-74-81.2C379.24 65 322.74 64 265 64h-18c-57.6 0-114.2 1-169.6 3.6C36.6 67.6 3.5 104 3.5 149C1 184.59-.06 220.19 0 255.79q-.15 53.4 3.4 106.9c0 45 33.1 81.5 73.9 81.5c58.2 2.7 117.9 3.9 178.6 3.8q91.2.3 178.6-3.8c40.9 0 74-36.5 74-81.5c2.4-35.7 3.5-71.3 3.4-107q.34-53.4-3.26-106.9ZM207 353.89v-196.5l145 98.2Z"/>
+  	</symbol>
+  	<symbol id="person" xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512">
+		<title>Login</title><path fill="currentColor" d="M332.64 64.58C313.18 43.57 286 32 256 32c-30.16 0-57.43 11.5-76.8 32.38c-19.58 21.11-29.12 49.8-26.88 80.78C156.76 206.28 203.27 256 256 256s99.16-49.71 103.67-110.82c2.27-30.7-7.33-59.33-27.03-80.6ZM432 480H80a31 31 0 0 1-24.2-11.13c-6.5-7.77-9.12-18.38-7.18-29.11C57.06 392.94 83.4 353.61 124.8 326c36.78-24.51 83.37-38 131.2-38s94.42 13.5 131.2 38c41.4 27.6 67.74 66.93 76.18 113.75c1.94 10.73-.68 21.34-7.18 29.11A31 31 0 0 1 432 480Z"/>
+  	</symbol>
+  	<symbol id="search" xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512">
+		<title>Search</title><path fill="currentColor" d="M456.69 421.39L362.6 327.3a173.81 173.81 0 0 0 34.84-104.58C397.44 126.38 319.06 48 222.72 48S48 126.38 48 222.72s78.38 174.72 174.72 174.72A173.81 173.81 0 0 0 327.3 362.6l94.09 94.09a25 25 0 0 0 35.3-35.3ZM97.92 222.72a124.8 124.8 0 1 1 124.8 124.8a124.95 124.95 0 0 1-124.8-124.8Z"/>
+  	</symbol>
+  	<symbol id="cart" xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512">
+		<title>Cart</title><circle cx="176" cy="416" r="32" fill="currentColor"/><circle cx="400" cy="416" r="32" fill="currentColor"/><path fill="currentColor" d="M456.8 120.78a23.92 23.92 0 0 0-18.56-8.78H133.89l-6.13-34.78A16 16 0 0 0 112 64H48a16 16 0 0 0 0 32h50.58l45.66 258.78A16 16 0 0 0 160 368h256a16 16 0 0 0 0-32H173.42l-5.64-32h241.66A24.07 24.07 0 0 0 433 284.71l28.8-144a24 24 0 0 0-5-19.93Z"/>
+  	</symbol>
+  	<symbol id="long-arrow-alt-left" xmlns="http://www.w3.org/2000/svg" class="la" viewBox="0 0 32 32">
+        <title>Long Arrow Left</title><path fill="currentColor" d="M10.813 9.281L4.093 16l6.72 6.719l1.406-1.438L7.938 17H28v-2H7.937l4.282-4.281z"/>
+    </symbol>
+    <symbol id="long-arrow-alt-right" xmlns="http://www.w3.org/2000/svg" class="la" viewBox="0 0 32 32">
+    	<title>Long Arrow Right</title><path fill="currentColor" d="M21.188 9.281L19.78 10.72L24.063 15H4v2h20.063l-4.282 4.281l1.407 1.438L27.905 16z"/>
+    </symbol>
+  	<symbol id="caret-down" xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512">
+		<title>Caret Down</title><path fill="currentColor" d="m98 190.06l139.78 163.12a24 24 0 0 0 36.44 0L414 190.06c13.34-15.57 2.28-39.62-18.22-39.62h-279.6c-20.5 0-31.56 24.05-18.18 39.62Z"/>
+  	</symbol>
+  	<symbol id="arrow-back" xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512">
+		<title>Arrow Back</title><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="48" d="M244 400L100 256l144-144M120 256h292"/>
+  	</symbol>
+  	<symbol id="arrow-forward" xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512">
+		<title>Arrow Forward</title><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="48" d="m268 112l144 144l-144 144m124-144H100"/>
+  	</symbol>
+  	<symbol id="chevron-forward" xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512">
+		<title>Chevron Forward</title><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="48" d="m184 112l144 144l-144 144"/>
+  	</symbol>
+  	<symbol id="play" xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512">
+		<title>Play</title><path fill="currentColor" d="M133 440a35.37 35.37 0 0 1-17.5-4.67c-12-6.8-19.46-20-19.46-34.33V111c0-14.37 7.46-27.53 19.46-34.33a35.13 35.13 0 0 1 35.77.45l247.85 148.36a36 36 0 0 1 0 61l-247.89 148.4A35.5 35.5 0 0 1 133 440Z"/>
+  	</symbol>
+  	<symbol id="menu-sharp" xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512">
+		<title>Menu</title><path fill="currentColor" d="M64 384h384v-42.67H64Zm0-106.67h384v-42.66H64ZM64 128v42.67h384V128Z"/>
+  	</symbol>
+  	<symbol id="close-sharp" xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512">
+		<title>Cross</title><path fill="currentColor" d="M400 145.49L366.51 112L256 222.51L145.49 112L112 145.49L222.51 256L112 366.51L145.49 400L256 289.49L366.51 400L400 366.51L289.49 256L400 145.49z"/>
+  	</symbol>
+  	<symbol id="cart-outline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+		<title>Cart Outline</title><path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+	</symbol>
+	<symbol id="quality" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+		<title>Quality</title><path d="M9.669.864 8 0 6.331.864l-1.858.282-.842 1.68-1.337 1.32L2.6 6l-.306 1.854 1.337 1.32.842 1.68 1.858.282L8 12l1.669-.864 1.858-.282.842-1.68 1.337-1.32L13.4 6l.306-1.854-1.337-1.32-.842-1.68L9.669.864zm1.196 1.193.684 1.365 1.086 1.072L12.387 6l.248 1.506-1.086 1.072-.684 1.365-1.51.229L8 10.874l-1.355-.702-1.51-.229-.684-1.365-1.086-1.072L3.614 6l-.25-1.506 1.087-1.072.684-1.365 1.51-.229L8 1.126l1.356.702 1.509.229z" />
+		<path d="M4 11.794V16l4-1 4 1v-4.206l-2.018.306L8 13.126 6.018 12.1 4 11.794z" />
+	</symbol>
+	<symbol id="price-tag" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+		<title>Price Tag</title><path d="M6 4.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm-1 0a.5.5 0 1 0-1 0 .5.5 0 0 0 1 0z" />
+		<path d="M2 1h4.586a1 1 0 0 1 .707.293l7 7a1 1 0 0 1 0 1.414l-4.586 4.586a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 1 6.586V2a1 1 0 0 1 1-1zm0 5.586 7 7L13.586 9l-7-7H2v4.586z" />
+	</symbol>
+	<symbol id="shield-plus" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+		<title>Shield Plus</title><path d="M5.338 1.59a61.44 61.44 0 0 0-2.837.856.481.481 0 0 0-.328.39c-.554 4.157.726 7.19 2.253 9.188a10.725 10.725 0 0 0 2.287 2.233c.346.244.652.42.893.533.12.057.218.095.293.118a.55.55 0 0 0 .101.025.615.615 0 0 0 .1-.025c.076-.023.174-.061.294-.118.24-.113.547-.29.893-.533a10.726 10.726 0 0 0 2.287-2.233c1.527-1.997 2.807-5.031 2.253-9.188a.48.48 0 0 0-.328-.39c-.651-.213-1.75-.56-2.837-.855C9.552 1.29 8.531 1.067 8 1.067c-.53 0-1.552.223-2.662.524zM5.072.56C6.157.265 7.31 0 8 0s1.843.265 2.928.56c1.11.3 2.229.655 2.887.87a1.54 1.54 0 0 1 1.044 1.262c.596 4.477-.787 7.795-2.465 9.99a11.775 11.775 0 0 1-2.517 2.453 7.159 7.159 0 0 1-1.048.625c-.28.132-.581.24-.829.24s-.548-.108-.829-.24a7.158 7.158 0 0 1-1.048-.625 11.777 11.777 0 0 1-2.517-2.453C1.928 10.487.545 7.169 1.141 2.692A1.54 1.54 0 0 1 2.185 1.43 62.456 62.456 0 0 1 5.072.56z" />
+		<path d="M8 4.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V9a.5.5 0 0 1-1 0V7.5H6a.5.5 0 0 1 0-1h1.5V5a.5.5 0 0 1 .5-.5z" />
+	</symbol>
+	<symbol id="star-fill" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+		<path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+	</symbol>
+	<symbol id="star-empty" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+		<path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z" />
+	</symbol>
+	<symbol id="star-half" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+		<path d="M5.354 5.119 7.538.792A.516.516 0 0 1 8 .5c.183 0 .366.097.465.292l2.184 4.327 4.898.696A.537.537 0 0 1 16 6.32a.548.548 0 0 1-.17.445l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256a.52.52 0 0 1-.146.05c-.342.06-.668-.254-.6-.642l.83-4.73L.173 6.765a.55.55 0 0 1-.172-.403.58.58 0 0 1 .085-.302.513.513 0 0 1 .37-.245l4.898-.696zM8 12.027a.5.5 0 0 1 .232.056l3.686 1.894-.694-3.957a.565.565 0 0 1 .162-.505l2.907-2.77-4.052-.576a.525.525 0 0 1-.393-.288L8.001 2.223 8 2.226v9.8z" />
+	</symbol>
+	<symbol id="quote" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+		<path fill="currentColor" d="m15 17l2-4h-4V6h7v7l-2 4h-3Zm-9 0l2-4H4V6h7v7l-2 4H6Z" />
+	</symbol>
+</svg>
+
+<div id="preloader">
+  <div id="loader"></div>
+</div>
+
+<div class="search-popup">
+  <div class="search-popup-container">
+
+    <h3 class="my-3">Search Here</h3>
+    <form role="search" method="get" class="search-form" action="">
+        <input type="search" id="search-form" class="search-field" placeholder="Type and press enter" value="" name="s" />
+        <button type="submit" class="search-submit">
+	        <a href="#" class="search-button">
+	          <svg class="bi" width="20" height="20"><use xlink:href="#search"></use></svg>
+	        </a>
+	    </button>
+    </form>
+
+  </div>
+</div>
+<header id="header-wrap">
+	<div class="top-header bg-dark">
+
+		<div class="container py-2 d-flex justify-content-between text-white">
+			
+			<div class="secondary-nav">
+				<ul class="d-flex m-0 list-unstyled">
+					<li><a href="#about">About Us</a></li>
+					<li><a href="#about">Privacy Policy</a></li>
+					<li><a href="#about">Contact Us</a></li>
+					<li><a href="#about">Terms of Use</a></li>
+				</ul>
+			</div>
+
+			<div class="social-share">
+				<ul class="d-flex flex-wrap m-0 list-unstyled">
+					<li><a href="#"><svg class="bi" width="16" height="16"><use xlink:href="#logo-facebook"></use></svg></a></li>
+					<li><a href="#"><svg class="bi" width="16" height="16"><use xlink:href="#logo-twitter"></use></svg></a></li>
+					<li><a href="#"><svg class="bi" width="16" height="16"><use xlink:href="#logo-pinterest"></use></svg></a></li>
+					<li><a href="#"><svg class="bi" width="16" height="16"><use xlink:href="#logo-instagram"></use></svg></a></li>
+					<li><a href="#"><svg class="bi" width="16" height="16"><use xlink:href="#logo-youtube"></use></svg></a></li>
+				</ul>
+			</div>
+
+		</div>
+
+	</div>
+
+	<nav id="header-nav" class="navbar navbar-expand-lg py-4">
+
+		<div class="container align-items-center">
+
+			<a class="navbar-brand" href="index.html">
+				<img src="images/logo.png" class="logo">
+			</a>
+			<button class="navbar-toggler d-flex d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+		    	<svg class="bi" width="36" height="36"><use xlink:href="#menu-sharp"></use></svg>
+		 	</button>
+
+			<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+				<div class="offcanvas-header justify-content-end">
+	              <button type="button" data-bs-dismiss="offcanvas" aria-label="Close" data-bs-target="#bdNavbar">
+	              	<svg class="bi" width="36" height="36"><use xlink:href="#close-sharp"></use></svg>
+	              </button>
+	            </div>
+				<div class="offcanvas-body justify-content-end">
+					<ul id="navbar" class="navbar-nav d-flex justify-content-end flex-wrap list-unstyled m-0">
+						<li class="nav-item dropdown">
+							<a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="true">Home<svg class="bi" width="10" height="10"><use xlink:href="#caret-down"></use></svg></a>
+							<ul class="dropdown-menu" data-bs-popper="none">
+					          	<li><a href="index.html" class="dropdown-item">Blog Home</a></li>
+					          	<li><a href="shop-home.html" class="dropdown-item">Shop Home</a></li>
+					        </ul>
+						</li>						
+						<li class="nav-item">
+							<a class="nav-link active" href="about.html">About</a>
+						</li>
+				        <li class="nav-item dropdown">
+				         	<a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="true">Pages<svg class="bi" width="10" height="10"><use xlink:href="#caret-down"></use></svg></a>
+							<ul class="dropdown-menu" data-bs-popper="none">
+					          	<li><a href="shop.html" class="dropdown-item">Shop <small><b>(PRO)</b></small></a></li>
+					          	<li><a href="shop-single.html" class="dropdown-item">Shop Single <small><b>(PRO)</b></small></a></li>
+					          	<li><a href="cart.html" class="dropdown-item">Cart <small><b>(PRO)</b></small></a></li>
+					          	<li><a href="checkout.html" class="dropdown-item">Checkout <small><b>(PRO)</b></small></a></li>
+					          	<li><a href="login.html" class="dropdown-item">Login <small><b>(PRO)</b></small></a></li>
+					          	<li><a href="styles.html" class="dropdown-item">Styles</a></li>
+					        </ul>
+				        </li>
+				        <li class="nav-item dropdown">
+				         	<a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="true">Blog<svg class="bi" width="10" height="10"><use xlink:href="#caret-down"></use></svg></a>
+							<ul class="dropdown-menu" data-bs-popper="none">
+					          	<li><a href="blog.html" class="dropdown-item">Blog <small><b>(PRO)</b></small></a></li>
+					          	<li><a href="blog-masonry.html" class="dropdown-item">Blog Masonry <small><b>(PRO)</b></small></a></li>
+					          	<li><a href="single-post.html" class="dropdown-item">Single Post <small><b>(PRO)</b></small></a></li>
+					        </ul>
+				        </li>
+						<li class="nav-item">
+							<a class="nav-link" href="contact.html">Contact</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link text-primary" href="https://templatesjungle.gumroad.com/l/techlight-tech-store-and-tech-blog-website-template" target="_blank">Get Pro</a>
+						</li>
+
+						<li class="nav-item">
+		                  <div class="user-items">
+		                    <ul class="d-flex justify-content-end list-unstyled m-0">
+		                      <li>
+		                        <a href="login.html">
+		                          <svg class="bi" width="20" height="20"><use xlink:href="#person"></use></svg>
+		                        </a>
+		                      </li>
+		                      <li>
+		                        <a href="#" class="search-button">
+		                          <svg class="bi" width="20" height="20"><use xlink:href="#search"></use></svg>
+		                        </a>
+		                      </li>
+		                      <li>
+		                        <a href="cart.html">
+		                          <svg class="bi" width="20" height="20"><use xlink:href="#cart"></use></svg>
+		                        </a>
+		                      </li>
+		                    </ul>
+		                  </div>
+		                </li>
+
+					</ul>
+				</div>
+			</div>
+
+		</div>
+
+	</nav>	
+</header>
+
+<section id="intro" class="bg-light padding-large">
+	<div class="container">
+		<div class="row">
+			<div class="col-xl-8 offset-xl-2 col-lg-10 offset-lg-1">
+				
+				<div class="page-title text-center">
+					<h2>About us</h2>
+					<div class="breadcum-items">
+						<span class="item"><a href="index.html">Home /</a></span>
+						<span class="item colored">About Us</span>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</section>
+
+<section id="company-services" class="padding-large">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-3 col-md-6 pb-3">
+        <div class="icon-box d-flex">
+          <div class="icon-box-icon pe-3 pb-3">
+            <svg class="cart-outline">
+              <use xlink:href="#cart-outline" />
+            </svg>
+          </div>
+          <div class="icon-box-content">
+            <h3 class="card-title text-dark">Free delivery</h3>
+            <p>Consectetur adipi elit lorem ipsum dolor sit amet.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 pb-3">
+        <div class="icon-box d-flex">
+          <div class="icon-box-icon pe-3 pb-3">
+            <svg class="quality">
+              <use xlink:href="#quality" />
+            </svg>
+          </div>
+          <div class="icon-box-content">
+            <h3 class="card-title text-dark">Quality guarantee</h3>
+            <p>Dolor sit amet orem ipsu mcons ectetur adipi elit.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 pb-3">
+        <div class="icon-box d-flex">
+          <div class="icon-box-icon pe-3 pb-3">
+            <svg class="price-tag">
+              <use xlink:href="#price-tag" />
+            </svg>
+          </div>
+          <div class="icon-box-content">
+            <h3 class="card-title text-dark">Daily offers</h3>
+            <p>Amet consectetur adipi elit loreme ipsum dolor sit.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 pb-3">
+        <div class="icon-box d-flex">
+          <div class="icon-box-icon pe-3 pb-3">
+            <svg class="shield-plus">
+              <use xlink:href="#shield-plus" />
+            </svg>
+          </div>
+          <div class="icon-box-content">
+            <h3 class="card-title text-dark">Secure payment</h3>
+            <p>Rem Lopsum dolor sit amet, consectetur adipi elit.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about-us" class="padding-large no-padding-top">
+  <div class="container">
+    <div class="row d-flex flex-wrap align-items-center justify-content-between">
+      <div class="col-md-6">
+        <div class="image-holder mb-4">
+          <div>
+            <img src="images/single-image.jpg" alt="single" class="single-image img-fluid">
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="detail ps-5">
+          <div class="display-header">
+            <h2>Real Story behind TechLight</h2>
+            <p class="pb-3">Risus augue curabitur diam senectus congue velit et. Sed vitae metus nibh sit era. Nulla adipiscing pharetra pellentesque maecenas odio eros at. Et libero vulputate amet duis erat volutpat vitae eget. Sed vitae metus nibh sit era. Quam libero etiam et in ac at quis. </br>
+            Nulla adipiscing pharetra pellentesque maecenas odio eros at. Et libero vulputate amet duis erat volutpat vitae eget. Quam libero etiam et in ac at quis. Risus augue curabitur diam senectus congue velit et. </p>
+            <a href="shop.html" class="button btn-bg-dark">Shop our store<svg class="bi" width="18" height="18"><use xlink:href="#chevron-forward"></use></svg></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="padding-large no-padding-top">
+	<div class="container">
+		<div class="row">
+			<div class="single-image col-md-12">
+				<h2>What's our motto?</h2>
+				<p>
+					Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste.
+				</p>
+			</div>
+			<img src="images/about.jpg" title="about" />			
+			<p class="mt-3">Incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste.</p>
+		</div>
+	</div>
+</section>
+
+<section id="testimonials" class="bg-light padding-large position-relative">
+  <div class="container">
+    <div class="row">
+      <div class="review-content position-relative">
+        <div class="swiper-icon swiper-arrow swiper-arrow-prev position-absolute d-flex align-items-center">
+          <svg class="bi" width="60" height="60"><use xlink:href="#long-arrow-alt-left"></use></svg>
+        </div>
+        <div class="swiper testimonial-swiper overflow-hidden">
+          <div class="quotation text-center">
+            <svg class="quote">
+              <use xlink:href="#quote" />
+            </svg>
+          </div>
+          <div class="swiper-wrapper">
+            <div class="swiper-slide text-center d-flex justify-content-center">
+              <div class="review-item col-md-10">
+                <i class="icon icon-review"></i>
+                <blockquote>“Tesque este pretium in neque, elit morbi sagittis lorem habi mattis ellen tesque pretium feugiat vel morbi suspen dise sagittis lorem mattis ellen tesque pretium feugiat vel morbi suspen dise habi tasse morbi.”</blockquote>
+                <div class="rating">
+                  <svg class="star star-fill">
+                    <use xlink:href="#star-fill"></use>
+                  </svg>
+                  <svg class="star star-fill">
+                    <use xlink:href="#star-fill"></use>
+                  </svg>
+                  <svg class="star star-fill">
+                    <use xlink:href="#star-fill"></use>
+                  </svg>
+                  <svg class="star star-half">
+                    <use xlink:href="#star-half"></use>
+                  </svg>
+                  <svg class="star star-empty">
+                    <use xlink:href="#star-empty"></use>
+                  </svg>
+                </div>
+                <div class="author-detail">
+                  <div class="name text-dark text-uppercase pt-2">Emma Chamberlin</div>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide text-center d-flex justify-content-center">
+              <div class="review-item col-md-10">
+                <i class="icon icon-review"></i>
+                <blockquote>“A blog is a digital publication that can complement a website or exist independently. A blog may include articles, short posts, listicles, infographics, videos, and other digital content.”</blockquote>
+                <div class="rating">
+                  <svg class="star star-fill">
+                    <use xlink:href="#star-fill"></use>
+                  </svg>
+                  <svg class="star star-fill">
+                    <use xlink:href="#star-fill"></use>
+                  </svg>
+                  <svg class="star star-fill">
+                    <use xlink:href="#star-fill"></use>
+                  </svg>
+                  <svg class="star star-fill">
+                    <use xlink:href="#star-fill"></use>
+                  </svg>
+                  <svg class="star star-fill">
+                    <use xlink:href="#star-fill"></use>
+                  </svg>
+                </div>
+                <div class="author-detail">
+                  <div class="name text-dark text-uppercase pt-2">Jennie Rose</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-icon swiper-arrow swiper-arrow-next position-absolute d-flex align-items-center">
+          <svg class="bi" width="60" height="60"><use xlink:href="#long-arrow-alt-right"></use></svg>
+        </div>
+        <div class="swiper-pagination testimonial-pagination"></div>
+      </div>
+    </div>
+  </div>
+  <div class="swiper-pagination"></div>
+</section>
+
+<footer id="footer" class="padding-large">
+	<div class="container">
+	    <div class="row">
+
+	      <div class="col-md-3 mb-5">
+			<a href="index.html"><img src="images/logo-light.png" class="logo"></a>
+			<p>Vel non nibh vestibulum massa ullamcorper. Bibendum ultrices venenatis, id id sed mass commodo eros duis ut cras neque.</p>
+		    <p>©2023 TechLight / HTML template by <a href="https://templatesjungle.com/" class="link-primary fw-bold text-decoration-underline" target="_blank">TemplatesJungle</a></p>
+	      </div>
+
+	      <div class="col-md-3 mb-5">
+	        <h5>More from us</h5>
+	        <ul class="nav flex-column">
+	          <li class="nav-item"><a href="#" class="nav-link">iPhones</a></li>
+	          <li class="nav-item"><a href="#" class="nav-link">MacBook</a></li>
+	          <li class="nav-item"><a href="#" class="nav-link">Best Laptop</a></li>
+	          <li class="nav-item"><a href="#" class="nav-link">Best TV Deal</a></li>
+	          <li class="nav-item"><a href="#" class="nav-link">Best Macbook Deals</a></li>
+	          <li class="nav-item"><a href="#" class="nav-link">eBay Coupons</a></li>
+	          <li class="nav-item"><a href="#" class="nav-link">Amazon Coupons</a></li>
+	          <li class="nav-item"><a href="#" class="nav-link">Laptop Coupons</a></li>	          
+	        </ul>
+	      </div>
+
+	      <div class="col-md-3 mb-5">
+	        <h5>About us</h5>
+	        <ul class="nav flex-column">
+	          <li class="nav-item"><a href="#" class="nav-link">Advertise</a></li>
+	          <li class="nav-item"><a href="#" class="nav-link">More About Us</a></li>
+	          <li class="nav-item"><a href="#" class="nav-link">Newsletter</a></li>
+	          <li class="nav-item"><a href="#" class="nav-link">Careers</a></li>
+	          <li class="nav-item"><a href="#" class="nav-link">Help Center</a></li>
+	          <li class="nav-item"><a href="#" class="nav-link">Contact</a></li>
+	          <li class="nav-item"><a href="#" class="nav-link">Sitemap</a></li>
+	          <li class="nav-item"><a href="#" class="nav-link">Licensing</a></li>	          
+	        </ul>
+	      </div>
+
+	      <div class="col-md-3 mb-5">
+	        <h5>Policies</h5>
+	        <ul class="nav flex-column">
+	          <li class="nav-item"><a href="#" class="nav-link">Privacy Policy</a></li>
+	          <li class="nav-item"><a href="#" class="nav-link">Terms of Use</a></li>
+	          <li class="nav-item"><a href="#" class="nav-link">Cookies</a></li>
+	          <li class="nav-item"><a href="#" class="nav-link">Information</a></li>
+	          <li class="nav-item"><a href="#" class="nav-link">Compliance</a></li>
+	          <li class="nav-item"><a href="#" class="nav-link">GDPR Policy</a></li>
+	          <li class="nav-item"><a href="#" class="nav-link">Sell informations</a></li>
+	          <li class="nav-item"><a href="#" class="nav-link">Copyright</a></li>
+	        </ul>
+	      </div>
+
+	    </div>
+	</div>
+</footer>
+
+<script src="js/jquery-1.11.0.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/plugins.js"></script>
+<script src="js/script.js"></script>
+
+</body>
+</html>
