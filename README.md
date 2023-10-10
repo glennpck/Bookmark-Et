@@ -1,2 +1,2 @@
 # BarGain
-TBD
+Amazon and eBay
