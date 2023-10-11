@@ -1,2 +1,2 @@
 # BarGain
-Amazon and eBay
+Blackwells and Wordery
