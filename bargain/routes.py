@@ -1,5 +1,7 @@
 from flask import Flask, render_template, url_for, flash, redirect, request
-from bargain.forms import SearchForm
+from blackwells import bw_scrape
+from wordery import wd_scrape
+
 from bargain import app
 
 @app.route("/", methods=['GET', 'POST'])
@@ -12,8 +14,8 @@ def index():
     
 @app.route("/search/<string:keyword>", methods=["GET"])
 def search(keyword):
-    search_list = bw_scrape(keyword, 20)
+    search_list = bw_scrape(keyword)
 
-    search_list += wd_scrape(keyword, 20)
+    search_list += wd_scrape(keyword)
 
     
