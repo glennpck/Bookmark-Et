@@ -14,8 +14,13 @@ def index():
     
 @app.route("/search/<string:keyword>", methods=["GET"])
 def search(keyword):
-    search_list = bw_scrape(keyword, 30)
+    
+    search = bw_scrape(keyword, 30)
 
-    search_list += wd_scrape(keyword, 30)
+    if (len(search) == 1):
+        return render_template("detail.html", product=search[0])
+    
+    else:
+        return render_template("results.html", product=search)
 
     
