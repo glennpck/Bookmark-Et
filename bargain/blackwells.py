@@ -12,13 +12,20 @@ def search(keyword, hits):
 
     return HTMLParser(r.text)
 
-def book_detail(isbn):
-    pass
+def search_isbn(isbn):
+    headers = '/bookshop/product/{}'.format(isbn)
+
+    r = httpx.get(bw_url + headers)
+
+    return HTMLParser(r.text)
 
 def bw_scrape(keyword, hits):
-    
-    if (len(keyword) != 13) and (keyword.isdigit()):
-        book_detail()
+
+    if (len(keyword) == 13) and (keyword.isdigit()):
+        page = search_isbn(keyword)
+        details =  page.css_first("div.container--50")
+
+        
 
     else:
         page = search(keyword, hits)
