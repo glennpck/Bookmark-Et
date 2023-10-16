@@ -1,8 +1,8 @@
 from flask import Flask, render_template, url_for, flash, redirect, request
-from bargain.blackwells import bw_scrape
-from bargain.wordery import wd_scrape
+from bookmarket.blackwells import bw_scrape
+from bookmarket.wordery import wd_scrape
 
-from bargain import app
+from bookmarket import app
 
 @app.route("/", methods=['GET', 'POST'])
 def index():

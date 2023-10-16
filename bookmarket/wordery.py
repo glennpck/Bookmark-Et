@@ -1,6 +1,6 @@
 import httpx
 from selectolax.parser import HTMLParser
-from bargain.classes import Wordery
+from bookmarket.classes import Wordery
 
 def search(keyword):
     wd_url = 'https://wordery.com'
