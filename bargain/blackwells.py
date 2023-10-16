@@ -19,22 +19,29 @@ def search_isbn(isbn):
 
     return HTMLParser(r.text)
 
-def get_details(item):
+def get_details(item=None, isbn=""):
     
-    isbn = item.css_first("a.btn").attributes['data-isbn']
+    if isbn == "":
+        isbn = item.css_first("a.btn").attributes['data-isbn']
+
     item_page = search_isbn(isbn)
 
     item_details = item_page.css("div.container--50")
 
     title_list = item_details[0].css_first("h1.product__name").text(strip=True, deep=False).split(" ")
+    print(title_list)
     title = ""
     for word in title_list:
-        if "\t" not in word:
+        if "\t" in word:
+            snip = word.replace("\t", "")
+            title += snip + " "
+        else:
             title += word + " "
 
     desc = ""
     if item_details[1].css_first("font"):
-        desc = item_details[1].css_first("font").text(strip=True deep=False)
+        desc = item_details[1].css_first("font").text(strip=True, deep=False)
+
     else:
         para_list = item_details[1].css("p")
         if len(para_list) >= 1 and len(para_list) <= 2:
@@ -53,39 +60,35 @@ def get_details(item):
     type = product_format[0].text(strip=True, deep=False)
     pb_date = product_format[1].text(strip=True, deep=False)[1:-1]
 
-    book = Blackwells(
+    return Blackwells(
         isbn = isbn,
         title = title,
-        desc = get_desc(item.css_first("a.btn").attributes['data-isbn']),
-        author = item.css_first("p.product-author").text(),
-        cover = bw_url + str(item.css_first("img").attributes['src']),
+        desc = desc,
+        author = author,
+        cover = bw_url + str(item_details[0].css_first("img").attributes['src']),
         type = type,
-        pb_date = pbd,
-        price = item.css_first("li.product-price--current").text().strip(),
-        url = bw_url + str(item.css_first("a.product-name").attributes["href"])
+        pb_date = pb_date,
+        price = item_details[0].css_first("li.product-price--current").text(strip=True, deep=False),
+        url = bw_url + "/bookshop/product/{}".format(isbn)
     )
 
 def bw_scrape(keyword, hits):
 
-    # if (len(keyword) == 13) and (keyword.isdigit()):
-    #     page = search_isbn(keyword)
-    #     details =  page.css("div.container--50")
-
-    #     title_list = details[0].css_first("h1.product__name").text(strip=True, deep=False).split(" ")
-    #     title = ""
-    #     for word in title_list:
-    #         if "\t" not in word:
-    #             title += word
-        
-
-    # else:
-    page = search(keyword, hits)
     book_list = []
     
-    for item in page.css("li.search-result__item"):
-
-        book = get_details(item)
-
+    if (len(keyword) == 13) and (keyword.isdigit()):
+        book = get_details(isbn=keyword)
+   
         book_list.append(book)
+        
+
+    else:
+        page = search(keyword, hits)
+        
+        for item in page.css("li.search-result__item"):
+
+            book = get_details(item)
+
+            book_list.append(book)
 
     return(book_list)
