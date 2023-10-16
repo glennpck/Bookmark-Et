@@ -30,7 +30,7 @@ def get_details(item):
     title = ""
     for word in title_list:
         if "\t" not in word:
-            title += word
+            title += word + " "
 
     desc = ""
     if item_details[1].css_first("font"):
@@ -45,21 +45,16 @@ def get_details(item):
             desc = "Description Unavailable"
 
     author = ""
-    author_list = item_details[0].css_first("p.product__author")
-    if len(author_list) <= 1:
-        author = author_list.text(strip=True, deep=False)
-    else:
-        for node in author_list:
-            author += node.text(strip=True, deep=False)
+    author_list = item_details[0].css("p.product__author > a")
+    for node in author_list:
+        author += node.text(strip=True, deep=False)
                 
-    
-
-    type_pbd_nodes = page.css("p.product-format > span")
-    type = type_pbd_nodes[0].text()
-    pbd = type_pbd_nodes[1].text()
+    product_format = item_details[0].css("p.product__format > span")
+    type = product_format[0].text(strip=True, deep=False)
+    pb_date = product_format[1].text(strip=True, deep=False)[1:-1]
 
     book = Blackwells(
-        isbn = item.css_first("a.btn").attributes['data-isbn'],
+        isbn = isbn,
         title = title,
         desc = get_desc(item.css_first("a.btn").attributes['data-isbn']),
         author = item.css_first("p.product-author").text(),
@@ -72,25 +67,25 @@ def get_details(item):
 
 def bw_scrape(keyword, hits):
 
-    if (len(keyword) == 13) and (keyword.isdigit()):
-        page = search_isbn(keyword)
-        details =  page.css("div.container--50")
+    # if (len(keyword) == 13) and (keyword.isdigit()):
+    #     page = search_isbn(keyword)
+    #     details =  page.css("div.container--50")
 
-        title_list = details[0].css_first("h1.product__name").text(strip=True, deep=False).split(" ")
-        title = ""
-        for word in title_list:
-            if "\t" not in word:
-                title += word
+    #     title_list = details[0].css_first("h1.product__name").text(strip=True, deep=False).split(" ")
+    #     title = ""
+    #     for word in title_list:
+    #         if "\t" not in word:
+    #             title += word
         
 
-    else:
-        page = search(keyword, hits)
-        book_list = []
-        
-        for item in page.css("li.search-result__item"):
+    # else:
+    page = search(keyword, hits)
+    book_list = []
+    
+    for item in page.css("li.search-result__item"):
 
-            book = get_details(item)
+        book = get_details(item)
 
-            book_list.append(book)
+        book_list.append(book)
 
     return(book_list)
