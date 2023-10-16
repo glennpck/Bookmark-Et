@@ -1,2 +1,2 @@
-# BarGain
+# Bookmark-Et
 Blackwells and Wordery
