@@ -29,7 +29,6 @@ def get_details(item=None, isbn=""):
     item_details = item_page.css("div.container--50")
 
     title_list = item_details[0].css_first("h1.product__name").text(strip=True, deep=False).split(" ")
-    print(title_list)
     title = ""
     for word in title_list:
         if "\t" in word:
