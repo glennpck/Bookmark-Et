@@ -15,11 +15,6 @@ def index():
         return render_template("index.html")
     except Exception:
         pass
-
-@app.route("/test")
-def test():
-
-    return render_template("list.html")
     
 @app.route("/search/<string:keyword>", methods=["GET"])
 def search(keyword):

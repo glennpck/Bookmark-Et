@@ -6,7 +6,7 @@ bw_url = 'https://blackwells.co.uk'
 
 def search(keyword, hits):
     keyword_header = keyword.replace(' ', '+')
-    headers = '/bookshop/search/?keyword={}&maxhits={}&offset={}'.format(keyword_header, hits, hits)
+    headers = '/bookshop/search/?keyword={}&maxhits={}'.format(keyword_header, hits, hits)
 
     r = httpx.get(bw_url + headers)
 
@@ -22,7 +22,11 @@ def search_isbn(isbn):
 def get_details(item=None, isbn=""):
     
     if isbn == "":
-        isbn = item.css_first("a.btn").attributes['data-isbn']
+        try:
+            isbn = item.css_first("a.btn").attributes['data-isbn']
+
+        except AttributeError:
+            return None
 
     item_page = search_isbn(isbn)
 
@@ -64,7 +68,7 @@ def get_details(item=None, isbn=""):
         title = title,
         desc = desc,
         author = author,
-        cover = bw_url + str(item_details[0].css_first("img").attributes['src']),
+        cover = bw_url + str(item_details[0].css_first("img").attributes['src']).replace("500x500", "300x300"),
         type = type,
         pb_date = pb_date,
         price = item_details[0].css_first("li.product-price--current").text(strip=True, deep=False),
@@ -88,6 +92,8 @@ def bw_scrape(keyword, hits):
 
             book = get_details(item)
 
-            book_list.append(book)
+            if book != None:
+
+                book_list.append(book)
 
     return(book_list)
