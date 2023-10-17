@@ -15,16 +15,21 @@ def index():
         return render_template("index.html")
     except Exception:
         pass
+
+@app.route("/test")
+def test():
+
+    return render_template("list.html")
     
 @app.route("/search/<string:keyword>", methods=["GET"])
 def search(keyword):
     
-    search = bw_scrape(keyword, 30)
+    search = bw_scrape(keyword, 10)
 
     if (len(search) == 1):
-        return render_template("item.html", product=search[0])
+        return render_template("item.html", search=search[0])
     
     else:
-        return render_template("list.html", product=search)
+        return render_template("list.html", search=search)
 
     

@@ -5,7 +5,7 @@ class Book:
         self.desc = desc
         self.author = author
         self.cover = cover
-        self.dimensions = [266, 400]
+        self.dimensions = [199, 300]
         self.type = type
         self.pb_date = pb_date
         self.price = price
