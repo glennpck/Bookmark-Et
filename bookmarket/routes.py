@@ -9,15 +9,19 @@ def index():
 
     if request.method == "POST":
         keyword = request.form['keyword']
-        return redirect('/search/{}'.format(keyword))
+        return redirect('/search/keyword={}'.format(keyword.replace(" ", "+")))
     
     try:
         return render_template("index.html")
     except Exception:
         pass
     
-@app.route("/search/<string:keyword>", methods=["GET"])
+@app.route("/search/keyword=<string:keyword>", methods=['GET', 'POST'])
 def search(keyword):
+
+    if request.method == "POST":
+        keyword = request.form['keyword']
+        return redirect('/search/keyword={}'.format(keyword.replace(" ", "+")))
     
     search = bw_scrape(keyword, 10)
 
