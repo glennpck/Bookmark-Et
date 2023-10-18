@@ -42,17 +42,13 @@ def get_details(item=None, isbn=""):
             title += word + " "
 
     desc = ""
-    if item_details[1].css_first("font"):
-        desc = item_details[1].css_first("font").text(strip=True, deep=False)
-
-    else:
-        para_list = item_details[1].css("p")
-        if len(para_list) >= 1 and len(para_list) <= 2:
-            desc = para_list[0].text(strip=True, deep=False)
-        elif len(para_list) > 2:
-            desc = para_list[1].text(strip=True, deep=False)
-        else:
-            desc = "Description Unavailable"
+    desc_nodes = item_details[1].css("div")
+    for node in desc_nodes:
+        try:
+            attr = node.attributes['itemprop']
+            desc = node.text(strip=True, deep=True)
+        except KeyError:
+            pass
 
     author = ""
     author_list = item_details[0].css("p.product__author > a")
