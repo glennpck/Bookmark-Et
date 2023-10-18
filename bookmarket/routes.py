@@ -32,13 +32,13 @@ def search(keyword):
         except Exception:
             pass
     
-    search = bw_scrape(keyword, 10)
+    if (len(keyword) == 13) and (keyword.isdigit()):
+        return redirect('/item/{}'.format(keyword))
+
+    search = bw_scrape(keyword)
     
     try:
-        if (len(search) == 1):
-            return render_template("item.html", book=search[0])
-        
-        elif (len(search) > 1):
+        if (len(search) >= 1):
             return render_template("list.html", search=search)
         
         else:
@@ -46,5 +46,9 @@ def search(keyword):
         
     except Exception:
         return render_template("error.html")
-
     
+@app.route("/item/<string:isbn>", methods=['GET', 'POST'])
+def book(isbn):
+
+    search = bw_scrape(isbn)
+    return render_template("item.html", book=search[0])

@@ -72,7 +72,7 @@ def get_details(item=None, isbn=""):
         url = bw_url + "/bookshop/product/{}".format(isbn)
     )
 
-def bw_scrape(keyword, hits):
+def bw_scrape(keyword, hits=10):
 
     book_list = []
     
