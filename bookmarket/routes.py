@@ -23,6 +23,10 @@ def search(keyword):
         keyword = request.form['keyword']
         return redirect('/search/keyword={}'.format(keyword.replace(" ", "+")))
     
+    elif request.method == "GET":
+        isbn = request.form['isbn']
+        return redirect('/search/keyword={}'.format(isbn))
+    
     search = bw_scrape(keyword, 10)
 
     if (len(search) == 1):

@@ -335,7 +335,12 @@
                         <div class="product-info smart-form">
                             <div class="row">
                                 <div class="col-md-6 col-sm-6 col-xs-6"> 
-                                    <a href="javascript:void(0);" class="btn btn-success">See More</a>
+                                    <form role="get-details" method="GET" action="">
+                                        <input type="hidden" value="{{book.isbn}}" name="isbn" />
+                                        <button type="submit">
+                                            <a href="javascript:void(0);" class="btn btn-success">See More</a>
+                                        </button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
