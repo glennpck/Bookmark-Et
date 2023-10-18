@@ -20,17 +20,26 @@ def index():
 def search(keyword):
 
     if request.method == "POST":
-        keyword = request.form['keyword']
-        return redirect('/search/keyword={}'.format(keyword.replace(" ", "+")))
+        try:
+            keyword = request.form['keyword']
+            return redirect('/search/keyword={}'.format(keyword.replace(" ", "+")))
+        except Exception:
+            pass
+
+        try:
+            isbn = request.form['isbn']
+            return redirect('/search/keyword={}'.format(isbn))
+        except Exception:
+            pass
     
-    elif request.method == "GET":
-        isbn = request.form['isbn']
-        return redirect('/search/keyword={}'.format(isbn))
+    # elif request.method == "GET":
+    #     isbn = request.form['isbn']
+    #     return redirect('/search/keyword={}'.format(isbn))
     
     search = bw_scrape(keyword, 10)
 
     if (len(search) == 1):
-        return render_template("item.html", search=search[0])
+        return render_template("item.html", book=search[0])
     
     else:
         return render_template("list.html", search=search)

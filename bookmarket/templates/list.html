@@ -268,16 +268,25 @@
         text-align: center
     }
 
+    /* .detail-form button {
+        font-size: 0;
+        top: 0;
+        right: 0;
+        background: transparent;
+        border: none;
+        box-shadow: none;
+    } */
+
     .product-detail .message-text {
         width: calc(100% - 70px)
     }
 
-    a.btn {
+    button.btn {
         background-color: rgb(69, 156, 255);
         color: white;
     }
 
-    a.btn:hover {
+    button.btn:hover {
         background-color: rgb(1, 120, 255)
     }
 
@@ -334,12 +343,10 @@
                         
                         <div class="product-info smart-form">
                             <div class="row">
-                                <div class="col-md-6 col-sm-6 col-xs-6"> 
-                                    <form role="get-details" method="GET" action="">
-                                        <input type="hidden" value="{{book.isbn}}" name="isbn" />
-                                        <button type="submit">
-                                            <a href="javascript:void(0);" class="btn btn-success">See More</a>
-                                        </button>
+                                <div class="col-md-6 col-sm-6 col-xs-6">
+                                    <form role="get-detail" method="POST" class="detail-form" action="">
+                                        <input type="hidden" value="{{book.isbn}}" name="isbn" required />
+                                        <button type="submit" class="btn btn-success">See More</button>
                                     </form>
                                 </div>
                             </div>
