@@ -5,7 +5,7 @@ from bookmarket.classes import Wordery
 def search(keyword):
     wd_url = 'https://wordery.com'
     keyword_header = keyword.replace(' ', '+')
-    headers = '/search/?term={}'.format(keyword_header)
+    headers = '{}'.format(keyword_header)
 
     r = httpx.get(wd_url + headers)
 
