@@ -32,16 +32,19 @@ def search(keyword):
         except Exception:
             pass
     
-    # elif request.method == "GET":
-    #     isbn = request.form['isbn']
-    #     return redirect('/search/keyword={}'.format(isbn))
-    
     search = bw_scrape(keyword, 10)
-
-    if (len(search) == 1):
-        return render_template("item.html", book=search[0])
     
-    else:
-        return render_template("list.html", search=search)
+    try:
+        if (len(search) == 1):
+            return render_template("item.html", book=search[0])
+        
+        elif (len(search) > 1):
+            return render_template("list.html", search=search)
+        
+        else:
+            return render_template("empty.html")
+        
+    except Exception:
+        return render_template("error.html")
 
     
