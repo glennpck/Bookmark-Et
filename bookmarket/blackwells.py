@@ -60,16 +60,16 @@ def get_details(item=None, isbn=""):
     pb_date = product_format[1].text(strip=True, deep=False)[1:-1]
 
     return Blackwells(
-        isbn = isbn,
-        title = title,
-        desc = desc,
-        author = author,
-        cover = [bw_url + str(item_details[0].css_first("img").attributes['src']).replace("500x500", "300x300"),
-                 bw_url + str(item_details[0].css_first("img").attributes['src'])],
-        type = type,
-        pb_date = pb_date,
-        price = item_details[0].css_first("li.product-price--current").text(strip=True, deep=False),
-        url = bw_url + "/bookshop/product/{}".format(isbn)
+        isbn,
+        title,
+        desc,
+        author,
+        [bw_url + str(item_details[0].css_first("img").attributes['src']).replace("500x500", "300x300"),
+         bw_url + str(item_details[0].css_first("img").attributes['src'])],
+        type,
+        pb_date,
+        item_details[0].css_first("li.product-price--current").text(strip=True, deep=False),
+        bw_url + "/bookshop/product/{}".format(isbn)
     )
 
 def bw_scrape(keyword, hits=10):
