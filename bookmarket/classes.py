@@ -5,7 +5,7 @@ class Book:
         self.desc = desc
         self.author = author
         self.cover = cover
-        self.dimensions = [199, 300, 322, 500]
+        self.dimensions = [[199, 300], [322, 500]]
         self.type = type
         self.pb_date = pb_date
         self.price = price
@@ -17,8 +17,9 @@ class Blackwells(Book):
         self.platform = "Blackwells"
 
 class Wordery():
-    def __init__(self, isbn, title, cover, price):
+    def __init__(self, isbn, title, cover, price, url):
         self.isbn = isbn
         self.title = title
         self.cover = cover
         self.price = price
+        self.url = url
