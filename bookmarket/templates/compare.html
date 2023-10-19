@@ -21,9 +21,19 @@
             height: 39px;
             box-shadow: 0px 5px 10px  #212121;
         }
+        
+        .origin:hover {
+            background-color: rgb(1, 120, 255)
+        }
+
+        .row {
+            padding-left: 55px;
+            padding-right: 55px;
+        }
 
         .card {
             width: 450px;
+            display: flex;
         }
 
         .card-header {
@@ -54,7 +64,7 @@
             font-size: 30px;
         }
 </style>
-<div class='container-fluid'>
+<div class='container'>
     <div class="row">
         <div class="card mx-auto col-md-6 col-6 mt-6">
             <h2 class="card-header">{{bw.platform}}</h2>
@@ -65,8 +75,11 @@
                 <div class='cvp'>
                     <h5 class="card-title font-weight-bold">{{bw.title}}</h5>
                     <p class="card-text">{{bw.price}}</p>
-                    <a href="#" class="btn details px-auto">View Details</a><br />
-                    <a href="#" class="btn origin px-auto">Check it out</a>
+                    <form role="get-detail" method="POST" class="detail-form" action="">
+                        <input type="hidden" value="{{bw.isbn}}" name="isbn" required />
+                        <button type="submit" class="btn details px-auto">View Details</button>
+                    </form>
+                    <a href="{{bw.url}}" class="btn origin px-auto">Check it out</a>
                 </div>
             </div>
         </div>
@@ -80,8 +93,11 @@
                 <div class='cvp'>
                     <h5 class="card-title font-weight-bold">{{wd.title[:25] + "..." if wd.title|length > 28 else wd.title}}</h5>
                     <p class="card-text">USD{{wd.price}}</p>
-                    <a href="#" class="btn details px-auto">View Details</a><br />
-                    <a href="#" class="btn origin px-auto">Check it out</a>
+                    <form role="get-detail" method="POST" class="detail-form" action="">
+                        <input type="hidden" value="{{wd.isbn}}" name="isbn" required />
+                        <button type="submit" class="btn details px-auto">View Details</button>
+                    </form>
+                    <a href="{{wd.url}}" class="btn origin px-auto">Check it out</a>
                 </div>
             </div>
         </div>
