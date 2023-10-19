@@ -3,13 +3,22 @@ from bookmarket.blackwells import bw_scrape
 from bookmarket.wordery import wd_scrape
 
 from bookmarket import app
-
+    
 @app.route("/", methods=['GET', 'POST'])
 def index():
 
     if request.method == "POST":
-        keyword = request.form['keyword']
-        return redirect('/search/keyword={}'.format(keyword.replace(" ", "+")))
+        try:
+            keyword = request.form['keyword']
+            return redirect('/search/keyword={}'.format(keyword.replace(" ", "+")))
+        except Exception:
+            pass
+
+        try:
+            isbn = request.form['isbn']
+            return redirect('/item/{}'.format(isbn))
+        except Exception:
+            pass
     
     try:
         return render_template("index.html")
@@ -20,7 +29,6 @@ def index():
 def search(keyword):
 
     if request.method == "POST":
-
         try:
             keyword = request.form['keyword']
             return redirect('/search/keyword={}'.format(keyword.replace(" ", "+")))
@@ -29,7 +37,7 @@ def search(keyword):
 
         try:
             isbn = request.form['isbn']
-            return redirect('/search/keyword={}'.format(isbn))
+            return redirect('/item/{}'.format(isbn))
         except Exception:
             pass
     
@@ -73,4 +81,11 @@ def book(isbn):
     
 @app.route("/compare/<string:isbn>", methods=['GET', 'POST'])
 def compare(isbn):
-    pass
+
+    try:
+        bw_search = bw_scrape(isbn)
+        wd_search = wd_scrape(isbn)
+        return render_template("compare.html", bw=bw_search[0], wd=wd_search)
+    
+    except Exception:
+        return render_template("error.html")

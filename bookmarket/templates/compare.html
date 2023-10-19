@@ -1,4 +1,16 @@
 {% extends 'base.html' %}
 {% block body %}
-<div>compare</div>
+<div class="container">
+    <div class="row">
+        <div class="col text-center">
+            <img src='{{bw.cover[1]}}' />
+            <span>{{bw.title}}</span>
+            
+        </div>
+        <div class="col text-center">
+            <img style='min-height: 500px' src='{{wd.cover}}' />
+            <span>{{wd.title}}</span>
+        </div>
+    </div>
+</div>
 {% endblock %}

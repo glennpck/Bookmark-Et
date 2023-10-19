@@ -269,15 +269,6 @@
         text-align: center
     }
 
-    /* .detail-form button {
-        font-size: 0;
-        top: 0;
-        right: 0;
-        background: transparent;
-        border: none;
-        box-shadow: none;
-    } */
-
     .product-detail .message-text {
         width: calc(100% - 70px)
     }
@@ -288,6 +279,15 @@
     }
 
     a.btn:hover {
+        background-color: rgb(1, 120, 255)
+    }
+
+    button.btn {
+        background-color: rgb(69, 156, 255);
+        color: white;
+    }
+
+    button.btn:hover {
         background-color: rgb(1, 120, 255)
     }
 
@@ -339,8 +339,14 @@
                 
                 <div class="product-info smart-form">
                     <div class="row">
-                        <div class="col-md-6 col-sm-6 col-xs-6">
+                        <div class="col-md-3 col-sm-3 col-xs-3">
                             <a href={{book.url}} class="btn btn-success">Check it out</a>
+                        </div>
+                        <div class="col-md-3 col-sm-3 col-xs-3">
+                            <form role="compare" method="POST" class="compare-form" action="">
+                                <input type="hidden" value="{{book.isbn}}" name="isbn" required />
+                                <button type="submit" class="btn btn-success">Compare</button>
+                            </form>    
                         </div>
                     </div>
                 </div>

@@ -17,7 +17,8 @@ def search(isbn):
 def get_details(page, isbn):
     item_details = page.css_first("div.o-layout--huge")
     title = item_details.css_first("strong").text()
-    cover = wd_url + str(item_details.css_first("img").attributes['src']).replace("width=267", "width=199")
+    cover = wd_url + str(item_details.css_first("img").attributes['src'])[:-9] + 'height=500'
+    print(cover)
 
     price = "Unavailable on this platform"
     try:
