@@ -82,6 +82,19 @@ def book(isbn):
 @app.route("/compare/<string:isbn>", methods=['GET', 'POST'])
 def compare(isbn):
 
+    if request.method == "POST":
+        try:
+            keyword = request.form['keyword']
+            return redirect('/search/keyword={}'.format(keyword.replace(" ", "+")))
+        except Exception:
+            pass
+
+        try:
+            isbn = request.form['isbn']
+            return redirect('/item/{}'.format(isbn))
+        except Exception:
+            pass
+
     try:
         bw_search = bw_scrape(isbn)
         wd_search = wd_scrape(isbn)
