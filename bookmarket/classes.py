@@ -23,3 +23,4 @@ class Wordery():
         self.cover = cover
         self.price = price
         self.url = url
+        self.platform = "Wordery"
