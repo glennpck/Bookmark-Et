@@ -16,7 +16,9 @@ class Blackwells(Book):
         super().__init__(isbn, title, desc, author, cover, type, pb_date, price, url)
         self.platform = "Blackwells"
 
-class Wordery(Book):
-    def __init__(self, isbn, title, author, cover, type, price, url):
-        super().__init__(isbn, title, author, cover, type, price, url)
-        self.platform = "Wordery"
+class Wordery():
+    def __init__(self, isbn, title, cover, price):
+        self.isbn = isbn
+        self.title = title
+        self.cover = cover
+        self.price = price
