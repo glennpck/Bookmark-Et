@@ -38,7 +38,7 @@ def get_details(page, isbn):
         title,
         cover,
         price,
-        wd_url + isbn
+        wd_url + "/{}".format(isbn)
     )
 
 def wd_scrape(isbn):
