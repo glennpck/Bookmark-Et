@@ -102,3 +102,10 @@ def compare(isbn):
     
     except Exception:
         return render_template("error.html")
+    
+@app.route("/signup", methods=["GET", "POST"])
+def signup():
+    try:
+        return render_template("signup.html")
+    except Exception:
+        return render_template("error.html")
