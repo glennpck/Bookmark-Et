@@ -1,17 +1,6 @@
 {% extends 'base.html' %}
 {% block body %}
 <style>
-    /* .gradient-custom-3 {
-    background: #84fab0;
-    background: -webkit-linear-gradient(to right, rgba(132, 250, 176, 0.5), rgba(143, 211, 244, 0.5));
-    background: linear-gradient(to right, rgba(132, 250, 176, 0.5), rgba(143, 211, 244, 0.5))
-    }
-
-    .gradient-custom-4 {
-    background: #84fab0;
-    background: -webkit-linear-gradient(to right, rgba(132, 250, 176, 1), rgba(143, 211, 244, 1));
-    background: linear-gradient(to right, rgba(132, 250, 176, 1), rgba(143, 211, 244, 1))
-    } */
     .card{
         width: 80%;
         margin-left: 50px
@@ -58,6 +47,15 @@
             opacity: 0;
         }
     }
+
+    .input-error {
+        color: red;
+        font-size: 15px;
+    }
+    #username-error {
+        display: none;
+    }
+
 </style>
 <section class="vh-100 bg-image">
     <div class="slide">
@@ -66,7 +64,7 @@
         <div class="slider" style="background-image:url('https://i0.wp.com/detailswork.com/wp-content/uploads/2022/04/5e34ee8d34c4515584246360_ed5e1a9c-5068-46de-b3ec-9d649abe13e0_1024x1024.jpeg?w=1020&ssl=1')"></div>
         <div class="slider" style="background-image:url('https://imgix.bustle.com/2017%2F3%2F10%2F648866266.jpg?w=1200&h=630&fit=crop&crop=faces&fm=jpg')"></div>
         <div class="slider" style="background-image:url('https://www.countryandtownhouse.com/wp-content/uploads/2022/03/GettyImages-187934469.jpg')"></div>
-        <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+        <div class="mask d-flex align-items-center h-100">
             <div class="container h-100">
                 <div class="row d-flex justify-content-center align-items-center h-100">
                     <div class="col-12 col-md-9 col-lg-7 col-xl-6">
@@ -75,30 +73,31 @@
                                 <div class="card-body p-5">
                                     <h2 class="text-uppercase text-center mb-5">Create an account</h2>
 
-                                    <form>
+                                    <form name="signup" class="validate-form" method="POST" action="">
 
                                         <div class="form-outline mb-4">
-                                            <input type="text" id="form3Example1cg" class="form-control form-control-lg" />
-                                            <label class="form-label" for="form3Example1cg">Your Name</label>
+                                            <label class="form-label" for="signupusername">Your Username (Alphabets and Numbers Only)</label>
+                                            <input name="username" type="text" id="signupusername" class="form-control form-control-lg" onchange="validateForm()" required />
+                                            <p class="input-error" id="username-error">Please Enter a Valid Username</p>
                                         </div>
 
                                         <div class="form-outline mb-4">
-                                            <input type="email" id="form3Example3cg" class="form-control form-control-lg" />
-                                            <label class="form-label" for="form3Example3cg">Your Email</label>
+                                            <label class="form-label" for="signupemail">Your Email</label>
+                                            <input name="email" type="email" id="signupemail" class="form-control form-control-lg" required />
                                         </div>
 
                                         <div class="form-outline mb-4">
-                                            <input type="password" id="form3Example4cg" class="form-control form-control-lg" />
-                                            <label class="form-label" for="form3Example4cg">Password</label>
+                                            <label class="form-label" for="signuppass">Password</label>
+                                            <input name="pass" type="password" id="signuppass" class="form-control form-control-lg" required />
                                         </div>
 
                                         <div class="form-outline mb-4">
-                                            <input type="password" id="form3Example4cdg" class="form-control form-control-lg" />
-                                            <label class="form-label" for="form3Example4cdg">Repeat your password</label>
+                                            <label class="form-label" for="signupreppass">Repeat your password</label>
+                                            <input type="password" id="signupreppass" class="form-control form-control-lg" required />
                                         </div>
 
                                         <div class="d-flex justify-content-center">
-                                            <button type="button"
+                                            <button type="submit"
                                                 class="btn btn-success btn-block btn-lg text-body">Register</button>
                                         </div>
 
@@ -116,4 +115,28 @@
             </div>
         </div>
 </section>
+
+<script>
+    function validateForm() {
+
+        var username = document.getElementById('signupusername');
+        var usernameErr = document.getElementById('username-error');
+
+        username.addEventListener('input', function(e) {
+            var regex = /^[\w]{5, 10}$/;
+            var currentvalue = e.target.value;
+
+            var valid = regex.test(currentValue)
+            console.log(valid)
+        })
+
+        if(valid) {
+            usernameErr.style.display = 'none'
+        }
+        else {
+            usernameErr.style.display = 'block'
+        }
+        
+    }
+</script>
 {% endblock %}
