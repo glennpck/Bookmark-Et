@@ -105,14 +105,18 @@ def compare(isbn):
     
 @app.route("/signup", methods=["GET", "POST"])
 def signup():
+
     try:
         return render_template("signup.html")
+    
     except Exception:
         return render_template("error.html")
     
 @app.route("/login", methods=["GET", "POST"])
 def login():
+
     try:
         return render_template("login.html")
+    
     except Exception:
         return render_template("error.html")
