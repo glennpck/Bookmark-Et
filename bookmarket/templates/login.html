@@ -1,3 +1,197 @@
 {% extends 'base.html' %}
 {% block body %}
+<style>
+    .card{
+        width: 80%;
+        margin-left: 50px
+    }
+
+    .slide {
+        overflow: hidden;
+        position: relative;
+        background-color: #000;
+        border: 8px solid #fff;
+        box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+    }
+
+    .slide > div.slider {
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        position: absolute;
+        animation: slide 25s infinite;
+        opacity: 0;
+    }
+
+    .slide > div:nth-child(2) {
+        animation-delay: 5s;
+    }
+    .slide > div:nth-child(3) {
+        animation-delay: 10s;
+    }
+    .slide > div:nth-child(4) {
+        animation-delay: 15s;
+    }
+    .slide > div:nth-child(5) {
+        animation-delay: 20s;
+    }
+
+    @keyframes slide {
+        10% {
+            opacity: 1;
+        }
+        20% {
+            opacity: 1;
+        }
+        30% {
+            opacity: 0;
+        }
+    }
+
+    .input-error {
+        color: red;
+        font-size: 15px;
+        display: none;
+    }
+    
+    .form-control {
+        font-size: 15px;
+    }
+
+    .form-control::placeholder {
+        font-size: 15px;
+    }
+
+    button.btn {
+        background-color: rgb(69, 156, 255);
+        color: white;
+        border-radius: 8px;
+    }
+
+    button.btn:hover {
+        background-color: rgb(1, 120, 255)
+    }
+</style>
+<section class="vh-100 bg-image">
+    <div class="slide">
+        <div class="slider" style="background-image:url('https://content.api.news/v3/images/bin/44f8eb999c02eab3f9b10c3e73e202ea')"></div>
+        <div class="slider" style="background-image:url('https://i0.wp.com/cms.babbel.news/wp-content/uploads/2022/01/Most_Beautiful_Libraries.png?resize=1200,630')"></div>
+        <div class="slider" style="background-image:url('https://i0.wp.com/detailswork.com/wp-content/uploads/2022/04/5e34ee8d34c4515584246360_ed5e1a9c-5068-46de-b3ec-9d649abe13e0_1024x1024.jpeg?w=1020&ssl=1')"></div>
+        <div class="slider" style="background-image:url('https://imgix.bustle.com/2017%2F3%2F10%2F648866266.jpg?w=1200&h=630&fit=crop&crop=faces&fm=jpg')"></div>
+        <div class="slider" style="background-image:url('https://www.countryandtownhouse.com/wp-content/uploads/2022/03/GettyImages-187934469.jpg')"></div>
+        <div class="mask d-flex align-items-center h-100">
+            <div class="container h-100">
+                <div class="row d-flex justify-content-center align-items-center h-100">
+                    <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+                        <div class="row">
+                            <div class="card" style="border-radius: 15px;">
+                                <div class="card-body p-5">
+                                    <h2 class="text-uppercase text-center mb-5">Login</h2>
+
+                                    <form name="login" class="validate-form" id="login-form" method="POST" action="">
+
+                                        <div class="form-outline mb-4">
+                                            <label class="form-label" for="loginemail">Email</label>
+                                            <input name="email" type="email" id="loginemail" class="form-control form-control-lg" placeholder="Email Address" oninput="validateEmail()" required />
+                                            <p class="input-error" id="email-error">Please Enter a Valid Email</p>
+                                        </div>
+
+                                        <div class="form-outline mb-4">
+                                            <label class="form-label" for="loginpass">Password</label>
+                                            <input name="pass" type="password" id="loginpass" class="form-control form-control-lg" placeholder="Password" oninput="validatePass()" required />
+                                            <p class="input-error" id="pass-error">Please Enter a Valid Password</p>
+                                        </div>
+
+                                        <div class="d-flex justify-content-center">
+                                            <button type="submit" id="submit"
+                                                class="btn btn-success btn-block btn-lg">Login</button>
+                                        </div>
+
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+</section>
+
+<script>
+
+    const form = document.getElementById('login-form');
+    form.addEventListener('change', function() {
+        validateAll();
+    })
+
+    function validateAll() {
+        button = document.getElementById('submit');
+        var inputErrs = document.getElementsByClassName('input-error');
+        for (let i = 0; i < inputErrs.length; i++) {
+            if (inputErrs[i].style.display == 'block') {
+                button.disabled = true;
+                break
+            }
+            else {
+                button.disabled = false;
+            }
+        }
+    }
+
+    function validateEmail() {
+        var email = document.getElementById('loginemail');
+        var emailErr = document.getElementById('email-error');
+
+        email.addEventListener('input', function(e) {
+
+            if (e.target.value == "") {
+                emailErr.style.display = 'none'
+            }
+            else {
+                var regex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+                var currentValue = e.target.value;
+
+
+                var valid = regex.test(currentValue);
+
+                if(valid) {
+                    emailErr.style.display = 'none';
+
+                }
+                else {
+                    emailErr.style.display = 'block';
+                }
+            }
+        })
+    }
+
+    function validatePass() {
+        var pass = document.getElementById('loginpass');
+        var passErr = document.getElementById('pass-error');
+
+        pass.addEventListener('input', function(e) {
+
+            if (e.target.value == "") {
+                passErr.style.display = 'none'
+            }
+            else {
+                var regex = /^[a-zA-Z0-9]{4,}$/;
+                var currentValue = e.target.value;
+
+
+                var valid = regex.test(currentValue);
+
+                if(valid) {
+                    passErr.style.display = 'none';
+
+                }
+                else {
+                    passErr.style.display = 'block';
+                }
+            }
+        })
+    }
+</script>
 {% endblock %}
