@@ -51,11 +51,26 @@
     .input-error {
         color: red;
         font-size: 15px;
-    }
-    #username-error {
         display: none;
     }
+    
+    .form-control {
+        font-size: 15px;
+    }
 
+    .form-control::placeholder {
+        font-size: 15px;
+    }
+
+    button.btn {
+        background-color: rgb(69, 156, 255);
+        color: white;
+        border-radius: 8px;
+    }
+
+    button.btn:hover {
+        background-color: rgb(1, 120, 255)
+    }
 </style>
 <section class="vh-100 bg-image">
     <div class="slide">
@@ -73,35 +88,38 @@
                                 <div class="card-body p-5">
                                     <h2 class="text-uppercase text-center mb-5">Create an account</h2>
 
-                                    <form name="signup" class="validate-form" method="POST" action="">
+                                    <form name="signup" class="validate-form" id="signup-form" method="POST" action="">
 
                                         <div class="form-outline mb-4">
                                             <label class="form-label" for="signupusername">Your Username (Alphabets and Numbers Only)</label>
-                                            <input name="username" type="text" id="signupusername" class="form-control form-control-lg" onchange="validateForm()" required />
+                                            <input name="username" type="text" id="signupusername" class="form-control form-control-lg" placeholder="example: johndoe53 (Min: 5, Max: 10)" oninput="validateUsername()" required />
                                             <p class="input-error" id="username-error">Please Enter a Valid Username</p>
                                         </div>
 
                                         <div class="form-outline mb-4">
                                             <label class="form-label" for="signupemail">Your Email</label>
-                                            <input name="email" type="email" id="signupemail" class="form-control form-control-lg" required />
+                                            <input name="email" type="email" id="signupemail" class="form-control form-control-lg" placeholder="example: test@mail.com" oninput="validateEmail()" required />
+                                            <p class="input-error" id="email-error">Please Enter a Valid Email</p>
                                         </div>
 
                                         <div class="form-outline mb-4">
-                                            <label class="form-label" for="signuppass">Password</label>
-                                            <input name="pass" type="password" id="signuppass" class="form-control form-control-lg" required />
+                                            <label class="form-label" for="signuppass">Password (Alphabets and Numbers Only)</label>
+                                            <input name="pass" type="password" id="signuppass" class="form-control form-control-lg" placeholder="example: pass123 (Min: 4)" oninput="validatePass()" required />
+                                            <p class="input-error" id="pass-error">Please Enter a Valid Password</p>
                                         </div>
 
                                         <div class="form-outline mb-4">
                                             <label class="form-label" for="signupreppass">Repeat your password</label>
-                                            <input type="password" id="signupreppass" class="form-control form-control-lg" required />
+                                            <input type="password" id="signupreppass" class="form-control form-control-lg" placeholder="example: pass123" oninput="validatePass()" required />
+                                            <p class="input-error" id="reppass-error">Password Does Not Match</p>
                                         </div>
 
                                         <div class="d-flex justify-content-center">
-                                            <button type="submit"
-                                                class="btn btn-success btn-block btn-lg text-body">Register</button>
+                                            <button type="submit" id="submit"
+                                                class="btn btn-success btn-block btn-lg">Register</button>
                                         </div>
 
-                                        <p class="text-center text-muted mt-5 mb-0">Already have an account? <a href="#!"
+                                        <p class="text-center text-muted mt-4 mb-0">Already have an account? <a href="#!"
                                             class="fw-bold text-body"><u>Login here</u></a></p>
 
                                     </form>
@@ -117,26 +135,125 @@
 </section>
 
 <script>
-    function validateForm() {
+
+    const form = document.getElementById('signup-form');
+    form.addEventListener('change', function() {
+        validateAll();
+    })
+
+    function validateAll() {
+        button = document.getElementById('submit');
+        var inputErrs = document.getElementsByClassName('input-error');
+        for (let i = 0; i < inputErrs.length; i++) {
+            if (inputErrs[i].style.display == 'block') {
+                button.disabled = true;
+                break
+            }
+            else {
+                button.disabled = false;
+            }
+        }
+    }
+
+    function validateUsername() {
 
         var username = document.getElementById('signupusername');
         var usernameErr = document.getElementById('username-error');
 
         username.addEventListener('input', function(e) {
-            var regex = /^[\w]{5, 10}$/;
-            var currentvalue = e.target.value;
 
-            var valid = regex.test(currentValue)
-            console.log(valid)
+            if (e.target.value == "") {
+                usernameErr.style.display = 'none'
+            }
+            else {
+                var regex = /^[a-zA-Z0-9]{4,10}$/;
+                var currentValue = e.target.value;
+
+
+                var valid = regex.test(currentValue);
+
+                if(valid) {
+                    usernameErr.style.display = 'none';
+
+                }
+                else {
+                    usernameErr.style.display = 'block';
+                }
+            }
+        })
+    }
+
+    function validateEmail() {
+        var email = document.getElementById('signupemail');
+        var emailErr = document.getElementById('email-error');
+
+        email.addEventListener('input', function(e) {
+
+            if (e.target.value == "") {
+                emailErr.style.display = 'none'
+            }
+            else {
+                var regex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+                var currentValue = e.target.value;
+
+
+                var valid = regex.test(currentValue);
+
+                if(valid) {
+                    emailErr.style.display = 'none';
+
+                }
+                else {
+                    emailErr.style.display = 'block';
+                }
+            }
+        })
+    }
+
+    function validatePass() {
+        var pass = document.getElementById('signuppass');
+        var passErr = document.getElementById('pass-error');
+
+        var reppass = document.getElementById('signupreppass');
+        var reppassErr = document.getElementById('reppass-error');
+
+        pass.addEventListener('input', function(e) {
+
+            if (e.target.value == "") {
+                passErr.style.display = 'none'
+            }
+            else {
+                var regex = /^[a-zA-Z0-9]{4,}$/;
+                var currentValue = e.target.value;
+
+
+                var valid = regex.test(currentValue);
+
+                if(valid) {
+                    passErr.style.display = 'none';
+
+                }
+                else {
+                    passErr.style.display = 'block';
+                }
+            }
         })
 
-        if(valid) {
-            usernameErr.style.display = 'none'
-        }
-        else {
-            usernameErr.style.display = 'block'
-        }
-        
+        reppass.addEventListener('input', function(e) {
+
+            if (e.target.value == "") {
+                reppassErr.style.display = 'none'
+            }
+            else {
+                if (e.target.value != pass.value) {
+                    reppassErr.style.display = 'block'
+                }
+                else {
+                    reppassErr.style.display = 'none'
+                }
+            }
+        })
     }
+
 </script>
 {% endblock %}
