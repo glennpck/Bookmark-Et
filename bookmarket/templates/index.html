@@ -1,7 +1,32 @@
 {% extends 'base.html' %}
 {% block body %}
+<style>
+	.row {
+		text-align: center;
+		padding: 0 150px 100px 150px;
+	}
+
+	.row h3 {
+		font-size: 30px;
+	}
+
+	.row input {
+		font-size: 20px;
+	}
+</style>
 <section id="product-for-sale" class="position-relative padding-large">
 	<div class="container">
+		<div class="row">
+			<h3 class="my-3">Search Here</h3>
+			<form role="search" method="POST" class="search-form" action="">
+				<input type="search" id="search-form" class="search-field" placeholder="Enter Book name or ISBN" name="keyword" required />
+				<button type="submit" class="search-submit">
+					<a href="#" class="search-button">
+					<svg class="bi" width="20" height="20"><use xlink:href="#search"></use></svg>
+					</a>
+				</button>
+			</form>
+		</div>
 		<div class="title-wrap d-flex justify-content-between">			
 			<div class="section-header">
 				<h4 class="elementary-title">Random recommendations</h4>
