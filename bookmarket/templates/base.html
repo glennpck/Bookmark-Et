@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 
-{% block header %}
 <head>
 	<title>Bookmark-Et | Knowledge about Knowledge</title>
 
@@ -107,7 +106,6 @@
 		<path fill="currentColor" d="m15 17l2-4h-4V6h7v7l-2 4h-3Zm-9 0l2-4H4V6h7v7l-2 4H6Z" />
 	</symbol>
 </svg>
-{% endblock %}
 
 <div id="preloader">
   <div id="loader"></div>
@@ -117,7 +115,7 @@
   <div class="search-popup-container">
 
     <h3 class="my-3 search-title">Search Here</h3>
-    <form role="search" method="POST" id="search-form" class="search-form" action="" onsubmit="textChangeSubmit()">
+    <form role="search" method="POST" class="search-form" action="" onsubmit="textChangeSubmit()">
         <input type="search" class="search-field" placeholder="Enter Book name or ISBN" name="keyword" required />
         <button type="submit" class="search-submit">
 	        <a href="#" class="search-button">
@@ -205,24 +203,11 @@
 
 {% block body %}{% endblock %}
 
-<script>
-	function textChangeSubmit() {
-		const forms = document.getElementsByClassName('search-form')
-		for (let i = 0; i < forms.length; i++) {
-			forms[i].addEventListener('submit', e => {
-				const elements = document.getElementsByClassName('search-title')
-				for (let j = 0; j < elements.length; j++) {
-					elements[j].innerHTML = "Got it! Give us a moment..."
-				}
-			})
-		}
-	}
-</script>>
-
-<script src="{{ url_for('static', filename='jquery-1.11.0.min.js') }}"></script>
-<script src="{{ url_for('static', filename='bootstrap.min.js') }}"></script>
-<script src="{{ url_for('static', filename='plugins.js') }}"></script>
-<script src="{{ url_for('static', filename='script.js') }}"></script>
+<script src="../static/main.js"></script>
+<script src="../static/jquery-1.11.0.min.js"></script>
+<script src="../static/bootstrap.min.js"></script>
+<script src="../static/plugins.js"></script>
+<script src="../static/script.js"></script>
 
 </body>
 </html>

@@ -15,16 +15,11 @@
 	}
 </style>
 <section id="product-for-sale" class="position-relative padding-large">
-	<div class="container">
+	<div class="container" id="index-body">
 		<div class="row">
 			<h3 class="my-3 search-title">Search Here</h3>
 			<form role="search" method="POST" class="search-form" action="" onsubmit="textChangeSubmit()">
-				<input type="search" id="search-form" class="search-field" placeholder="Enter Book name or ISBN" name="keyword" required />
-				<button type="submit" class="search-submit">
-					<a href="#" class="search-button">
-					<svg class="bi" width="20" height="20"><use xlink:href="#search"></use></svg>
-					</a>
-				</button>
+				<input type="search" class="search-field" placeholder="Enter Book name or ISBN" name="keyword" required />
 			</form>
 		</div>
 		<div class="title-wrap d-flex justify-content-between">			
@@ -102,17 +97,5 @@
             <div class="swiper-pagination products-pagination"></div>
 	</div>
 </section>
-<script>
-	function textChangeSubmit() {
-		const forms = document.getElementsByClassName('search-form')
-		for (let i = 0; i < forms.length; i++) {
-			forms[i].addEventListener('submit', e => {
-				const elements = document.getElementsByClassName('search-title')
-				for (let j = 0; j < elements.length; j++) {
-					elements[j].innerHTML = "Got it! Give us a moment..."
-				}
-			})
-		}
-	}
-</script>
+
 {% endblock %}
