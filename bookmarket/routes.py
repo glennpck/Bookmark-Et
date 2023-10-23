@@ -3,8 +3,12 @@ from bookmarket.blackwells import bw_scrape
 from bookmarket.wordery import wd_scrape
 
 from bookmarket import app
+
+@app.route("/")
+def welcome():
+    return redirect('/index')
     
-@app.route("/", methods=['GET', 'POST'])
+@app.route("/index", methods=['GET', 'POST'])
 def index():
 
     if request.method == "POST":

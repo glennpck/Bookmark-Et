@@ -321,7 +321,7 @@
                                 <a href="#">
                                     {{book.title[:36] + "..." if book.title|length > 39 else book.title}}
                                     <span>{{book.author[:46] + "..." if book.author|length > 49 else book.author}}</span>
-                                    <span>{{book.type + book.pb_date}}</span>
+                                    <span>{{book.type + " " + book.pb_date}}</span>
                                 </a>
                             </h5>
                             <p class="price-container">
