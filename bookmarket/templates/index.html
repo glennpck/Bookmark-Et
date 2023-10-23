@@ -17,8 +17,8 @@
 <section id="product-for-sale" class="position-relative padding-large">
 	<div class="container">
 		<div class="row">
-			<h3 class="my-3">Search Here</h3>
-			<form role="search" method="POST" class="search-form" action="">
+			<h3 class="my-3 search-title">Search Here</h3>
+			<form role="search" method="POST" class="search-form" action="" onsubmit="textChangeSubmit()">
 				<input type="search" id="search-form" class="search-field" placeholder="Enter Book name or ISBN" name="keyword" required />
 				<button type="submit" class="search-submit">
 					<a href="#" class="search-button">
@@ -38,86 +38,58 @@
 
 					<div class="swiper-slide product-card link-effect">
 						<figure class="zoom-effect">
-							<a href="single-product.html" class="zoom-in"><img src="{{ url_for('static', filename='product1.jpg') }}" alt="stories" class="lgpostImg img-fluid"></a>
+							<a href="single-product.html" class="zoom-in"><img src="" alt="stories" class="lgpostImg img-fluid"></a>
 						</figure>
 						<div class="story-title-wrap my-3 d-flex justify-content-between">
-							<h3 class="story-title"><a href="single-product.html">Air pod</a></h3>
+							<h3 class="story-title"><a href="single-product.html">insert title</a></h3>
 							<a class="price" href="#" data-after="ADD TO CART"><span>$ 200</span></a>
 						</div>
 					</div>
 					<div class="swiper-slide product-card link-effect">
 						<figure class="zoom-effect">
-							<a href="single-product.html" class="zoom-in"><img src="{{ url_for('static', filename='product2.jpg') }}" alt="stories" class="lgpostImg img-fluid"></a>
+							<a href="single-product.html" class="zoom-in"><img src="" alt="stories" class="lgpostImg img-fluid"></a>
 						</figure>
 						<div class="story-title-wrap my-3 d-flex justify-content-between">
-							<h3 class="story-title"><a href="single-product.html">Iphone</a></h3>
+							<h3 class="story-title"><a href="single-product.html">insert title</a></h3>
 							<a class="price" href="#" data-after="ADD TO CART"><span>$ 1500</span></a>
 						</div>
 					</div>
 					<div class="swiper-slide product-card link-effect">
 						<figure class="zoom-effect">
-							<a href="single-product.html" class="zoom-in"><img src="{{ url_for('static', filename='product3.jpg') }}" alt="stories" class="lgpostImg img-fluid"></a>
+							<a href="single-product.html" class="zoom-in"><img src="" alt="stories" class="lgpostImg img-fluid"></a>
 						</figure>
 						<div class="story-title-wrap my-3 d-flex justify-content-between">
-							<h3 class="story-title"><a href="single-product.html">Watch</a></h3>
+							<h3 class="story-title"><a href="single-product.html">insert title</a></h3>
 							<a class="price" href="#" data-after="ADD TO CART"><span>$ 800</span></a>
 						</div>
 					</div>
 					<div class="swiper-slide product-card link-effect">
 						<figure class="zoom-effect">
-							<a href="single-product.html" class="zoom-in"><img src="{{ url_for('static', filename='product4.jpg') }}" alt="stories" class="lgpostImg img-fluid"></a>
+							<a href="single-product.html" class="zoom-in"><img src="" alt="stories" class="lgpostImg img-fluid"></a>
 						</figure>
 						<div class="story-title-wrap my-3 d-flex justify-content-between">
-							<h3 class="story-title"><a href="single-product.html">Drone</a></h3>
+							<h3 class="story-title"><a href="single-product.html">insert title</a></h3>
 							<a class="price" href="#" data-after="ADD TO CART"><span>$ 1200</span></a>
 						</div>
 					</div>
 					<div class="swiper-slide product-card link-effect">
 						<figure class="zoom-effect">
-							<a href="single-product.html" class="zoom-in"><img src="{{ url_for('static', filename='product5.jpg') }}" alt="stories" class="lgpostImg img-fluid"></a>
+							<a href="single-product.html" class="zoom-in"><img src="" alt="stories" class="lgpostImg img-fluid"></a>
 						</figure>
 						<div class="story-title-wrap my-3 d-flex justify-content-between">
-							<h3 class="story-title"><a href="single-product.html">Air pod</a></h3>
+							<h3 class="story-title"><a href="single-product.html">insert title</a></h3>
 							<a class="price" href="#" data-after="ADD TO CART"><span>$ 200</span></a>
 						</div>
 					</div>
 					<div class="swiper-slide product-card link-effect">
 						<figure class="zoom-effect">
-							<a href="single-product.html" class="zoom-in"><img src="{{ url_for('static', filename='product6.jpg') }}" alt="stories" class="lgpostImg img-fluid"></a>
+							<a href="single-product.html" class="zoom-in"><img src="" alt="stories" class="lgpostImg img-fluid"></a>
 						</figure>
 						<div class="story-title-wrap my-3 d-flex justify-content-between">
-							<h3 class="story-title"><a href="single-product.html">Camera</a></h3>
+							<h3 class="story-title"><a href="single-product.html">insert title</a></h3>
 							<a class="price" href="#" data-after="ADD TO CART"><span>$ 400</span></a>
 						</div>
 					</div>
-					<div class="swiper-slide product-card link-effect">
-						<figure class="zoom-effect">
-							<a href="single-product.html" class="zoom-in"><img src="{{ url_for('static', filename='product7.jpg') }}" alt="stories" class="lgpostImg img-fluid"></a>
-						</figure>
-						<div class="story-title-wrap my-3 d-flex justify-content-between">
-							<h3 class="story-title"><a href="single-product.html">Apple Mobile</a></h3>
-							<a class="price" href="#" data-after="ADD TO CART"><span>$ 2000</span></a>
-						</div>
-					</div>
-					<div class="swiper-slide product-card link-effect">
-						<figure class="zoom-effect">
-							<a href="single-product.html" class="zoom-in"><img src="{{ url_for('static', filename='product8.jpg') }}" alt="stories" class="lgpostImg img-fluid"></a>
-						</figure>
-						<div class="story-title-wrap my-3 d-flex justify-content-between">
-							<h3 class="story-title"><a href="single-product.html">Joy Stick</a></h3>
-							<a class="price" href="#" data-after="ADD TO CART"><span>$ 150</span></a>
-						</div>
-					</div>
-					<div class="swiper-slide product-card link-effect">
-						<figure class="zoom-effect">
-							<a href="single-product.html" class="zoom-in"><img src="{{ url_for('static', filename='product9.jpg') }}" alt="stories" class="lgpostImg img-fluid"></a>
-						</figure>
-						<div class="story-title-wrap my-3 d-flex justify-content-between">
-							<h3 class="story-title"><a href="single-product.html">Headset</a></h3>
-							<a class="price" href="#" data-after="ADD TO CART"><span>$ 250</span></a>
-						</div>
-					</div>
-
 				</div>
 
 			</div>
@@ -130,4 +102,17 @@
             <div class="swiper-pagination products-pagination"></div>
 	</div>
 </section>
+<script>
+	function textChangeSubmit() {
+		const forms = document.getElementsByClassName('search-form')
+		for (let i = 0; i < forms.length; i++) {
+			forms[i].addEventListener('submit', e => {
+				const elements = document.getElementsByClassName('search-title')
+				for (let j = 0; j < elements.length; j++) {
+					elements[j].innerHTML = "Got it! Give us a moment..."
+				}
+			})
+		}
+	}
+</script>
 {% endblock %}
