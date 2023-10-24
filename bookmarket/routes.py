@@ -13,7 +13,7 @@ def createUserData(user):
     password = user.password
     favourites = user.favourites
     recent_viewed = user.recent_viewed
-    return {email: {"username": username, "email": email, "password": password, "favourites": favourites, "recent_viewed": recent_viewed}}
+    return {email.replace(".", ","): {"username": username, "email": email.replace(".", ","), "password": password, "favourites": favourites, "recent_viewed": recent_viewed}}
 
 @app.route("/")
 def welcome():
@@ -130,7 +130,7 @@ def signup():
 
         try:
             email = request.form['email']
-            ref = db.reference('/{}'.format(email))
+            ref = db.reference('/{}'.format(email.replace(".", ",")))
             if not ref.get():
                 username = request.form['username']
                 password = request.form['pass']
@@ -138,7 +138,8 @@ def signup():
                 user = User(username, email, hashed_pw)
                 db.reference("/").update(createUserData(user))
                 flash('Account Created Successfully! Welcome to Bookmarket', 'success')
-                session['user'] = user
+                session['username'] = user.username
+                session['email'] = user.email
                 return redirect(url_for('index'))
 
             else:
@@ -167,11 +168,12 @@ def login():
         try:
             email = request.form['email']
             password = request.form['pass']
-            ref = db.reference('/{}'.format(email))
+            ref = db.reference('/{}'.format(email.replace(".", ",")))
             if ref.get() and bcrypt.check_password_hash(ref.get()['password'], password):
                 user_object = ref.get()
                 user = User(user_object['username'], user_object['email'], user_object['password'], user_object['favourites'], user_object['recent_viewed'])
-                session['user'] = user
+                session['username'] = user.username
+                session['email'] = user.email
                 return redirect(url_for('index'))
 
             else:
