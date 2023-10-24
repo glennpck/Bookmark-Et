@@ -1,6 +1,15 @@
-from flask import Flask, render_template, url_for, flash, redirect, request
+from flask import Flask, render_template, url_for, flash, redirect, request, session
 from bookmarket.blackwells import bw_scrape
 from bookmarket.wordery import wd_scrape
+import firebase_admin
+from firebase_admin import db, credentials
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
+cred = credentials.Certificate("credentials.json")
+firebase_admin.initialize_app(cred, {"databaseURL": os.getenv("FIREBASE_URL")})
 
 from bookmarket import app
 
@@ -110,6 +119,13 @@ def compare(isbn):
 @app.route("/signup", methods=["GET", "POST"])
 def signup():
 
+    if request.method == "POST":
+        try:
+            keyword = request.form['keyword']
+            return redirect('/search/keyword={}'.format(keyword.replace(" ", "+")))
+        except Exception:
+            pass
+
     try:
         return render_template("signup.html")
     
@@ -118,6 +134,13 @@ def signup():
     
 @app.route("/login", methods=["GET", "POST"])
 def login():
+
+    if request.method == "POST":
+        try:
+            keyword = request.form['keyword']
+            return redirect('/search/keyword={}'.format(keyword.replace(" ", "+")))
+        except Exception:
+            pass
 
     try:
         return render_template("login.html")
