@@ -1,3 +1,11 @@
+class User:
+    def __init__(self, username, email, password, favourites=[], recent_viewed=[]):
+        self.username = username
+        self.email = email
+        self.password = password
+        self.favourites = favourites
+        self.recent_viewed = recent_viewed
+
 class Book:
     def __init__(self, isbn, title, desc, author, cover, type, pb_date, price, url):
         self.isbn = isbn
@@ -24,3 +32,4 @@ class Wordery():
         self.price = price
         self.url = url
         self.platform = "Wordery"
+

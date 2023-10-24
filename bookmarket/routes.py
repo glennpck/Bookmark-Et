@@ -1,17 +1,19 @@
 from flask import Flask, render_template, url_for, flash, redirect, request, session
+from bookmarket import bcrypt
 from bookmarket.blackwells import bw_scrape
 from bookmarket.wordery import wd_scrape
-import firebase_admin
-from firebase_admin import db, credentials
-from dotenv import load_dotenv
-import os
-
-load_dotenv()
-
-cred = credentials.Certificate("credentials.json")
-firebase_admin.initialize_app(cred, {"databaseURL": os.getenv("FIREBASE_URL")})
-
+from bookmarket.classes import User
+from firebase_admin import db
 from bookmarket import app
+import json
+
+def createUserData(user):
+    username = user.username
+    email = user.email
+    password = user.password
+    favourites = user.favourites
+    recent_viewed = user.recent_viewed
+    return {email: {"username": username, "email": email, "password": password, "favourites": favourites, "recent_viewed": recent_viewed}}
 
 @app.route("/")
 def welcome():
@@ -126,6 +128,26 @@ def signup():
         except Exception:
             pass
 
+        try:
+            email = request.form['email']
+            ref = db.reference('/{}'.format(email))
+            if not ref.get():
+                username = request.form['username']
+                password = request.form['pass']
+                hashed_pw = bcrypt.generate_password_hash(password).decode('utf-8')
+                user = User(username, email, hashed_pw)
+                db.reference("/").update(createUserData(user))
+                flash('Account Created Successfully! Welcome to Bookmarket', 'success')
+                session['user'] = user
+                return redirect(url_for('index'))
+
+            else:
+                flash('Account with specified email already exists!', 'danger')
+                return redirect(url_for('signup'))
+
+        except Exception:
+            return render_template("error.html")
+
     try:
         return render_template("signup.html")
     
@@ -141,6 +163,23 @@ def login():
             return redirect('/search/keyword={}'.format(keyword.replace(" ", "+")))
         except Exception:
             pass
+
+        try:
+            email = request.form['email']
+            password = request.form['pass']
+            ref = db.reference('/{}'.format(email))
+            if ref.get() and bcrypt.check_password_hash(ref.get()['password'], password):
+                user_object = ref.get()
+                user = User(user_object['username'], user_object['email'], user_object['password'], user_object['favourites'], user_object['recent_viewed'])
+                session['user'] = user
+                return redirect(url_for('index'))
+
+            else:
+                flash('Invalid Email or Password! Please try again', 'danger')
+                return redirect(url_for('login'))
+        
+        except Exception:
+            return render_template("error.html")
 
     try:
         return render_template("login.html")
