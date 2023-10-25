@@ -35,6 +35,16 @@ def getBookObject(book):
                         "price": book.price,
                         "url": book.url}}
 
+def parseFavAmbiguous(dict):
+    fav_list = []
+    if dict != ['']:
+        for key in dict:
+            if key != '0':
+                fav_list.append(key)
+
+    return fav_list
+
+
 @app.route("/")
 def welcome():
     return redirect('/index')
@@ -80,6 +90,7 @@ def search(keyword):
     username = ""
     try:
         username = session['username']
+        fav_list = parseFavAmbiguous(db.reference('/{}/favourites'.format(session['email'].replace(".", ","))).get())
     except Exception:
         pass
 
@@ -101,25 +112,25 @@ def search(keyword):
 
     search = bw_scrape(keyword)
     
-    try:
-        if username != "":
-            if (len(search) >= 1):
-                return render_template("list.html", search=search, username=username)
-            else:
-                return render_template("empty.html", username=username)
-            
+    # try:
+    if username != "":
+        if (len(search) >= 1):
+            return render_template("list.html", search=search, username=username, fav_list=fav_list)
         else:
-            if (len(search) >= 1):
-                return render_template("list.html", search=search)
-            else:
-                return render_template("empty.html")
+            return render_template("empty.html", username=username)
         
-    except Exception:
-
-        if username != "":
-            return render_template("error.html", username=username)
+    else:
+        if (len(search) >= 1):
+            return render_template("list.html", search=search)
         else:
-            return render_template("error.html")
+            return render_template("empty.html")
+        
+    # except Exception:
+
+    #     if username != "":
+    #         return render_template("error.html", username=username)
+    #     else:
+    #         return render_template("error.html")
     
 @app.route("/item/<string:isbn>", methods=['GET', 'POST'])
 def book(isbn):
