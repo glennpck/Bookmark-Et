@@ -364,6 +364,9 @@
             isbn = document.getElementById("fav-button").value
             const favourite = await fetch("/renderFavourite?book="+isbn)
         }
+        else {
+            window.location = "{{ url_for('login') }}"
+        }
     }
 </script>
 {% endblock %}

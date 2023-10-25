@@ -24,6 +24,17 @@ def getUserObject(email):
         user_obj['favourites'], 
         user_obj['recent_viewed'])
 
+def getBookObject(book):
+    return {book.isbn: {"isbn": book.isbn,
+                        "title": book.title,
+                        "desc": book.desc,
+                        "author": book.author,
+                        "cover": book.cover,
+                        "type": book.type,
+                        "pb_date": book.pb_date,
+                        "price": book.price,
+                        "url": book.url}}
+
 @app.route("/")
 def welcome():
     return redirect('/index')
@@ -235,7 +246,7 @@ def login():
             if ref.get() and bcrypt.check_password_hash(ref.get()['password'], password):
                 user_object = ref.get()
                 session['username'] = user_object['username']
-                session['email'] = user_object['email']
+                session['email'] = user_object['email'].replace(",",".")
                 return redirect(url_for('index'))
 
             else:
@@ -264,4 +275,9 @@ def signout():
 def render_favourite():
     isbn = request.args.get('book')
     book = bw_scrape(isbn)
+    fav_dict = db.reference('/{}/favourites'.format(session['email'].replace(".",","))).get()
+    if book[0].isbn not in fav_dict:
+        db.reference('/{}/favourites'.format(session['email'].replace(".",","))).update(getBookObject(book[0]))
+    elif book[0].isbn in fav_dict:
+        db.reference('/{}/favourites/{}'.format(session['email'].replace(".",","), book[0].isbn)).delete()
     return isbn
