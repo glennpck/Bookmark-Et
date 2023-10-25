@@ -319,7 +319,14 @@
                         <div class="product-detail">
                             <h5 class="name">
                                 <a href="#">
-                                    {{book.title[:36] + "..." if book.title|length > 39 else book.title}}
+                                    <div class="row">
+                                        <div class="col-10">
+                                            {{book.title[:36] + "..." if book.title|length > 39 else book.title}} 
+                                        </div>
+                                        <div class="col">
+                                            <button id="fav-button" style="border: none;background: none;" value="{{book.isbn}}" onclick="renderFavourites()"><i class="fa fa-heart-o" style="font-size:20px;color:red"></i></button>
+                                        </div>
+                                    </div>
                                     <span>{{book.author[:46] + "..." if book.author|length > 49 else book.author}}</span>
                                     <span>{{book.type + " " + book.pb_date}}</span>
                                 </a>
@@ -351,4 +358,12 @@
     {% endif %}
     {% endfor %}
 </div>
+<script>
+    async function renderFavourites() {
+        if ("{{username}}" != "") {
+            isbn = document.getElementById("fav-button").value
+            const favourite = await fetch("/renderFavourite?book="+isbn)
+        }
+    }
+</script>
 {% endblock %}

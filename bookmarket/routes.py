@@ -14,6 +14,16 @@ def createUserData(user):
     recent_viewed = user.recent_viewed
     return {email.replace(".", ","): {"username": username, "email": email.replace(".", ","), "password": password, "favourites": favourites, "recent_viewed": recent_viewed}}
 
+def getUserObject(email):
+    ref = db.reference('/{}'.format(email.replace(".", ",")))
+    user_obj = ref.get()
+    return User(
+        user_obj['username'], 
+        user_obj['email'], 
+        user_obj['password'], 
+        user_obj['favourites'], 
+        user_obj['recent_viewed'])
+
 @app.route("/")
 def welcome():
     return redirect('/index')
@@ -24,6 +34,7 @@ def index():
     username = ""
     try:
         username = session['username']
+        user = getUserObject(session['email'])
     except Exception:
         pass
 
@@ -42,15 +53,24 @@ def index():
     
     try:
         if username != "":
-            return render_template("index.html", username=username)
+            return render_template("index.html", username=username, recent_viewed=user.recent_viewed)
         else:
             return render_template("index.html")
         
     except Exception:
-        return render_template("error.html")
+        if username != "":
+            return render_template("error.html", username=username)
+        else:
+            return render_template("error.html")
     
 @app.route("/search/keyword=<string:keyword>", methods=['GET', 'POST'])
 def search(keyword):
+     
+    username = ""
+    try:
+        username = session['username']
+    except Exception:
+        pass
 
     if request.method == "POST":
         try:
@@ -71,17 +91,33 @@ def search(keyword):
     search = bw_scrape(keyword)
     
     try:
-        if (len(search) >= 1):
-            return render_template("list.html", search=search)
-        
+        if username != "":
+            if (len(search) >= 1):
+                return render_template("list.html", search=search, username=username)
+            else:
+                return render_template("empty.html", username=username)
+            
         else:
-            return render_template("empty.html")
+            if (len(search) >= 1):
+                return render_template("list.html", search=search)
+            else:
+                return render_template("empty.html")
         
     except Exception:
-        return render_template("error.html")
+
+        if username != "":
+            return render_template("error.html", username=username)
+        else:
+            return render_template("error.html")
     
 @app.route("/item/<string:isbn>", methods=['GET', 'POST'])
 def book(isbn):
+
+    username = ""
+    try:
+        username = session['username']
+    except Exception:
+        pass
 
     if request.method == "POST":
         try:
@@ -97,14 +133,26 @@ def book(isbn):
             pass
 
     try:
-        search = bw_scrape(isbn)
-        return render_template("item.html", book=search[0])
+        if username != "":
+            search = bw_scrape(isbn)
+            return render_template("item.html", book=search[0], username=username)
+        else:
+            return render_template("item.html")
     
     except Exception:
-        return render_template("error.html")
+        if username != "":
+            return render_template("error.html", username=username)
+        else:
+            return render_template("error.html")
     
 @app.route("/compare/<string:isbn>", methods=['GET', 'POST'])
 def compare(isbn):
+
+    username = ""
+    try:
+        username = session['username']
+    except Exception:
+        pass
 
     if request.method == "POST":
         try:
@@ -122,10 +170,16 @@ def compare(isbn):
     try:
         bw_search = bw_scrape(isbn)
         wd_search = wd_scrape(isbn)
-        return render_template("compare.html", bw=bw_search[0], wd=wd_search)
+        if username != "":
+            return render_template("compare.html", bw=bw_search[0], wd=wd_search, username=username)
+        else:
+            return render_template("compare.html", bw=bw_search[0], wd=wd_search)
     
     except Exception:
-        return render_template("error.html")
+        if username != "":
+            return render_template("error.html", username=username)
+        else:
+            return render_template("error.html")
     
 @app.route("/signup", methods=["GET", "POST"])
 def signup():
@@ -205,3 +259,9 @@ def signout():
         return redirect(url_for('index'))
     except Exception:
         return render_template("error.html")
+    
+@app.route("/renderFavourite")
+def render_favourite():
+    isbn = request.args.get('book')
+    book = bw_scrape(isbn)
+    return isbn
