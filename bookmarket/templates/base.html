@@ -158,6 +158,16 @@
 						<li class="nav-item">
 		                  <div class="user-items">
 		                    <ul class="d-flex justify-content-end list-unstyled m-0">
+								{% if username %}
+							  <li class="nav-item dropdown">
+								<a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="true">Hi, {{username}}  <svg class="bi" width="20" height="20"><use xlink:href="#person"></use></svg></a>
+								<ul class="dropdown-menu" data-bs-popper="none">
+									<li><a href="{{ url_for('signout') }}" class="'dropdown-item">Sign Out</a></li>
+								</ul>
+		                        <a href="login.html">
+		                        </a>
+		                      </li>
+							  {% else %}
 							  <li class="nav-item dropdown">
 								<a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="true"><svg class="bi" width="20" height="20"><use xlink:href="#person"></use></svg></a>
 								<ul class="dropdown-menu" data-bs-popper="none">
@@ -167,6 +177,7 @@
 		                        <a href="login.html">
 		                        </a>
 		                      </li>
+							  {% endif %}
 		                      <li>
 		                        <a href="#" class="search-button">
 		                          <svg class="bi" width="20" height="20"><use xlink:href="#search"></use></svg>

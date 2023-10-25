@@ -1,3 +1,5 @@
 __pycache__
 credentials.json
 .env
+bookmarket/__pycache__
+credentials.json

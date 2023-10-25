@@ -5,7 +5,6 @@ from bookmarket.wordery import wd_scrape
 from bookmarket.classes import User
 from firebase_admin import db
 from bookmarket import app
-import json
 
 def createUserData(user):
     username = user.username
@@ -22,6 +21,12 @@ def welcome():
 @app.route("/index", methods=['GET', 'POST'])
 def index():
 
+    username = ""
+    try:
+        username = session['username']
+    except Exception:
+        pass
+
     if request.method == "POST":
         try:
             keyword = request.form['keyword']
@@ -36,7 +41,11 @@ def index():
             pass
     
     try:
-        return render_template("index.html")
+        if username != "":
+            return render_template("index.html", username=username)
+        else:
+            return render_template("index.html")
+        
     except Exception:
         return render_template("error.html")
     
@@ -171,9 +180,8 @@ def login():
             ref = db.reference('/{}'.format(email.replace(".", ",")))
             if ref.get() and bcrypt.check_password_hash(ref.get()['password'], password):
                 user_object = ref.get()
-                user = User(user_object['username'], user_object['email'], user_object['password'], user_object['favourites'], user_object['recent_viewed'])
-                session['username'] = user.username
-                session['email'] = user.email
+                session['username'] = user_object['username']
+                session['email'] = user_object['email']
                 return redirect(url_for('index'))
 
             else:
@@ -186,5 +194,14 @@ def login():
     try:
         return render_template("login.html")
     
+    except Exception:
+        return render_template("error.html")
+
+@app.route("/signout")
+def signout():
+    session.pop('username', None)
+    session.pop('email', None)
+    try:
+        return redirect(url_for('index'))
     except Exception:
         return render_template("error.html")
