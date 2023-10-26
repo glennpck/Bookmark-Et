@@ -323,11 +323,22 @@
                 <div class="col-md-7 col-sm-12 col-xs-12">
                 <div class="product-detail">
                     <h5 class="name">
-                        <a href="#">
-                            {{book.title}}
-                            <span>{{book.author}}</span>
-                            <span>{{book.type}} {{book.pb_date}}</span>
-                        </a>
+                        <div class="row">
+                            <div class="col-10">
+                                <h1>{{book.title}}</h1>
+                            </div>
+                            <div class="col">
+                                <button onclick="renderFavourites()" id="fav-button" style="border: none;background: none;" value="{{book.isbn}}">
+                                    {% if book.isbn in fav_list %}
+                                    <i class="fa fa-heart" id="heart-icon" style="font-size:40px;color:red;padding-left: 20px"></i>
+                                    {% else %}
+                                    <i class="fa fa-heart-o" id="heart-icon" style="font-size:48px;color:red;padding-left: 20px""></i>
+                                    {% endif %}
+                                </button>
+                            </div>
+                        </div>
+                        <span>{{book.author}}</span>
+                        <span>{{book.type}} {{book.pb_date}}</span>
                     </h5>
                     <p class="price-container">
                         <span style="font-weight: bold">{{book.price}}</span>
@@ -354,4 +365,25 @@
         </div>
     </div>
 </div>
+<script>
+
+    async function renderFavourites() {
+        if ("{{ username }}" != "") {
+            heart_icon = "#heart-icon";
+            var element = document.querySelector(heart_icon);
+            if (element.classList.contains("fa-heart-o")) {
+                element.classList.replace("fa-heart-o", "fa-heart");
+            }
+            else if (element.classList.contains("fa-heart")) {
+                element.classList.replace("fa-heart", "fa-heart-o");
+            }
+            common_id = "fav-button"
+            isbn = document.getElementById(common_id).value;
+            const favourite = await fetch("/renderFavourite?book="+isbn);
+        }
+        else {
+            window.location = "{{ url_for('login') }}";
+        }
+    }
+</script>
 {% endblock %}

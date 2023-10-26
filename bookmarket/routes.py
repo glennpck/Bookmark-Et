@@ -102,6 +102,7 @@ def book(isbn):
     username = ""
     try:
         username = session['username']
+        fav_list = parseFavAmbiguous(db.reference('/{}/favourites'.format(session['email'].replace(".", ","))).get())
     except Exception:
         pass
 
@@ -121,9 +122,9 @@ def book(isbn):
     try:
         if username != "":
             search = bw_scrape(isbn)
-            return render_template("item.html", book=search[0], username=username)
+            return render_template("item.html", book=search[0], username=username, fav_list=fav_list)
         else:
-            return render_template("item.html")
+            return render_template("item.html", book=search[0])
     
     except Exception:
         if username != "":
