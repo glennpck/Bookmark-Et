@@ -301,6 +301,7 @@
             position: relative
         }
     }
+
 </style>
 <div class="container">
     {% for book in search %}
@@ -326,9 +327,9 @@
                                         <div class="col">
                                             <button onclick="renderFavourites('{{loop.index}}')" id="fav-button{{loop.index}}" style="border: none;background: none;" value="{{book.isbn}}">
                                                 {% if book.isbn in fav_list %}
-                                                <i class="fa fa-heart" style="font-size:20px;color:red"></i>
+                                                <i class="fa fa-heart" id="heart-icon{{loop.index}}" style="font-size:20px;color:red"></i>
                                                 {% else %}
-                                                <i class="fa fa-heart-o" style="font-size:20px;color:red"></i>
+                                                <i class="fa fa-heart-o" id="heart-icon{{loop.index}}" style="font-size:20px;color:red"></i>
                                                 {% endif %}
                                             </button>
                                         </div>
@@ -366,33 +367,23 @@
 </div>
 <script>
     async function renderFavourites(loop_index) {
-        if ("{{username}}" != "") {
-            common_id = "fav-button"
-            id = common_id.concat(loop_index)
+        if ("{{ username }}" != "") {
+            heart_icon = "#heart-icon";
+            selector = heart_icon.concat(loop_index);
+            var element = document.querySelector(selector);
+            if (element.classList.contains("fa-heart-o")) {
+                element.classList.replace("fa-heart-o", "fa-heart");
+            }
+            else if (element.classList.contains("fa-heart")) {
+                element.classList.replace("fa-heart", "fa-heart-o");
+            }
+            common_id = "fav-button";
+            id = common_id.concat(loop_index);
             isbn = document.getElementById(id).value;
             const favourite = await fetch("/renderFavourite?book="+isbn);
-            // var fav_button = document.getElementById("fav-button")
-            // if (fav_button.classList.contains("fa-heart-o")) {
-            //     fav_button.classList.remove("fa-heart");
-            //     fav_button.classList.add("fa-heart-o");
-
-            //     var disp = fav_button.style.display;
-            //     fav_button.style.display = 'none';
-            //     var trick = fav_button.offsetHeight;
-            //     fav_button.style.display = disp;
-            // }
-            // else if (fav_button.classList.contains("fa-heart")) {
-            //     fav_button.classList.remove("fa-heart");
-            //     fav_button.classList.add("fa-heart-o");
-
-            //     var disp = fav_button.style.display;
-            //     fav_button.style.display = 'none';
-            //     var trick = fav_button.offsetHeight;
-            //     fav_button.style.display = disp;
-            // }
-        // }
-        // else {
-        //     window.location = "{{ url_for('login') }}";
+        }
+        else {
+            window.location = "{{ url_for('login') }}";
         }
     }
 </script>
