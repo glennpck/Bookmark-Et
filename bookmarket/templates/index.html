@@ -13,6 +13,14 @@
 	.row input {
 		font-size: 20px;
 	}
+
+	.lgpostImg {
+		padding-left: 50px;
+	}
+
+	.recent-title {
+		width: 200px;
+	}
 </style>
 <section id="product-for-sale" class="position-relative padding-large">
 	<div class="container" id="index-body">
@@ -22,11 +30,13 @@
 				<input type="search" class="search-field" placeholder="Enter Book name or ISBN" name="keyword" required />
 			</form>
 		</div>
+		{% if recent_viewed != [''] %}
 		<div class="title-wrap d-flex justify-content-between">			
 			<div class="section-header">
 				<h4 class="elementary-title">Recently Viewed</h4>
 			</div><!--section-header-->
 		</div>
+		{% endif %}
 		<div class="swiper products-carousel overflow-hidden">
 
 			<div class="swiper-wrapper">
@@ -37,8 +47,10 @@
 						<a href="#" class="zoom-in"><img src="{{book.cover[0]}}" alt="stories" class="lgpostImg img-fluid"></a>
 					</figure>
 					<div class="story-title-wrap my-3 d-flex justify-content-between">
-						<h3 class="story-title"><a href="#">{{book.title}}</a></h3>
-						<a class="price" href="#" data-after="CHECK IT OUT"><span>{{book.price}}</span></a>
+						<div class="recent-title">
+							<h3 class="story-title"><a href="#">{{book.title[:30] + "..." if book.title|length > 30 else book.title}}</a></h3>
+						</div>
+						<a class="price" href="#" data-after="SEE MORE"><span>{{book.price}}</span></a>
 					</div>
 				</div>
 				{% endfor %}

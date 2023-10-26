@@ -17,6 +17,7 @@ def welcome():
 def index():
 
     username = ""
+    recent_list = ['']
     try:
         username = session['username']
         user = getUserObject(session['email'])
@@ -37,17 +38,17 @@ def index():
         except Exception:
             pass
     
-    # try:
-    if username != "":
-        return render_template("index.html", username=username, recent_viewed=recent_list)
-    else:
-        return render_template("index.html")
+    try:
+        if username != "":
+            return render_template("index.html", username=username, recent_viewed=recent_list)
+        else:
+            return render_template("index.html", recent_viewed=recent_list)
         
-    # except Exception:
-    #     if username != "":
-    #         return render_template("error.html", username=username)
-    #     else:
-    #         return render_template("error.html")
+    except Exception:
+        if username != "":
+            return render_template("error.html", username=username)
+        else:
+            return render_template("error.html")
     
 @app.route("/search/keyword=<string:keyword>", methods=['GET', 'POST'])
 def search(keyword):
