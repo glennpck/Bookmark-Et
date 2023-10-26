@@ -1,5 +1,5 @@
 from firebase_admin import db
-from bookmarket.classes import User, Book, Blackwells
+from bookmarket.classes import User, Book, Blackwells, BookAmbiguous
 from datetime import datetime
 
 def createUserData(user):
@@ -41,16 +41,30 @@ def parseFavAmbiguous(dict):
     return fav_list
 
 def updateRecentViewed(new, email, isbn):
-    recent_list = db.reference('/{}/recent_viewed'.format(email.replace(".", ",")).get())
+    recent_list = db.reference('/{}/recent_viewed'.format(email.replace(".", ","))).get()
     if len(recent_list) == 5 and isbn not in recent_list.keys():
         latest_date = ""
         remove_isbn = ""
         for key in recent_list:
             if key != '0':
-                view_date = datetime.strptime(recent_list["key"]["date"], "%Y-%m-%d %H:%M:%S.%f")
-                if latest_date == "" or view_date > latest_date:
+                view_date = datetime.strptime(recent_list[key]["date"], "%Y-%m-%d %H:%M:%S.%f")
+                if latest_date == "" or view_date < latest_date:
                     latest_date = view_date
                     remove_isbn = key
-        db.reference('/{}/recent_viewed/{}'.format(email.replace(".", ","), remove_isbn).delete())
+        db.reference('/{}/recent_viewed/{}'.format(email.replace(".", ","), remove_isbn)).delete()
 
-    db.reference('/{}/recent_viewed'.format(email.replace(".", ",")).update(new))
+    db.reference('/{}/recent_viewed'.format(email.replace(".", ","))).update(new)
+
+def parseRecentViewed(recent_list):
+    parsed_recent = []
+    for key in recent_list:
+        if key != '0':
+            ambig_book = BookAmbiguous(
+                key,
+                recent_list[key]['title'],
+                recent_list[key]['cover'],
+                recent_list[key]['price']
+            )
+            parsed_recent.append(ambig_book)
+
+    return parsed_recent

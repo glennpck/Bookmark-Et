@@ -33,3 +33,9 @@ class Wordery():
         self.url = url
         self.platform = "Wordery"
 
+class BookAmbiguous():
+    def __init__(self, isbn, title, cover, price):
+        self.isbn = isbn
+        self.title = title
+        self.cover = cover
+        self.price = price

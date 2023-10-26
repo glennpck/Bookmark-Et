@@ -7,7 +7,7 @@ from firebase_admin import db
 from bookmarket import app
 from datetime import datetime
 
-from bookmarket.methods import createUserData, getUserObject, getBookObject, parseFavAmbiguous, updateRecentViewed
+from bookmarket.methods import createUserData, getUserObject, getBookObject, parseFavAmbiguous, updateRecentViewed, parseRecentViewed
 
 @app.route("/")
 def welcome():
@@ -20,6 +20,7 @@ def index():
     try:
         username = session['username']
         user = getUserObject(session['email'])
+        recent_list = parseRecentViewed(user.recent_viewed) if user.recent_viewed != [''] else user.recent_viewed
     except Exception:
         pass
 
@@ -36,17 +37,17 @@ def index():
         except Exception:
             pass
     
-    try:
-        if username != "":
-            return render_template("index.html", username=username, recent_viewed=user.recent_viewed)
-        else:
-            return render_template("index.html")
+    # try:
+    if username != "":
+        return render_template("index.html", username=username, recent_viewed=recent_list)
+    else:
+        return render_template("index.html")
         
-    except Exception:
-        if username != "":
-            return render_template("error.html", username=username)
-        else:
-            return render_template("error.html")
+    # except Exception:
+    #     if username != "":
+    #         return render_template("error.html", username=username)
+    #     else:
+    #         return render_template("error.html")
     
 @app.route("/search/keyword=<string:keyword>", methods=['GET', 'POST'])
 def search(keyword):
@@ -121,7 +122,7 @@ def book(isbn):
 
     search = bw_scrape(isbn)
     now = str(datetime.now())
-    book_obj = {search[0].isbn: {"title": search[0].title, "cover": search[0].cover, "price": search[0].price, "date": now}}
+    book_obj = {search[0].isbn: {"isbn": search[0].isbn, "title": search[0].title, "cover": search[0].cover, "price": search[0].price, "date": now}}
     updateRecentViewed(book_obj, session['email'], search[0].isbn)
 
     try:

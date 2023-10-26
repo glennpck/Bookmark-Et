@@ -30,16 +30,19 @@
 		<div class="swiper products-carousel overflow-hidden">
 
 			<div class="swiper-wrapper">
-
+				{% if recent_viewed != [''] %}
+				{% for book in recent_viewed %}
 				<div class="swiper-slide product-card link-effect">
 					<figure class="zoom-effect">
-						<a href="#" class="zoom-in"><img src="" alt="stories" class="lgpostImg img-fluid"></a>
+						<a href="#" class="zoom-in"><img src="{{book.cover[0]}}" alt="stories" class="lgpostImg img-fluid"></a>
 					</figure>
 					<div class="story-title-wrap my-3 d-flex justify-content-between">
-						<h3 class="story-title"><a href="single-product.html">insert title</a></h3>
-						<a class="price" href="#" data-after="ADD TO CART"><span></span></a>
+						<h3 class="story-title"><a href="#">{{book.title}}</a></h3>
+						<a class="price" href="#" data-after="CHECK IT OUT"><span>{{book.price}}</span></a>
 					</div>
 				</div>
+				{% endfor %}
+				{% endif %}
 			</div>
 		</div>
 	</div>
