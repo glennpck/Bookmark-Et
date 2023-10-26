@@ -6,43 +6,7 @@ from bookmarket.classes import User
 from firebase_admin import db
 from bookmarket import app
 
-def createUserData(user):
-    username = user.username
-    email = user.email
-    password = user.password
-    favourites = user.favourites
-    recent_viewed = user.recent_viewed
-    return {email.replace(".", ","): {"username": username, "email": email.replace(".", ","), "password": password, "favourites": favourites, "recent_viewed": recent_viewed}}
-
-def getUserObject(email):
-    ref = db.reference('/{}'.format(email.replace(".", ",")))
-    user_obj = ref.get()
-    return User(
-        user_obj['username'], 
-        user_obj['email'], 
-        user_obj['password'], 
-        user_obj['favourites'], 
-        user_obj['recent_viewed'])
-
-def getBookObject(book):
-    return {book.isbn: {"isbn": book.isbn,
-                        "title": book.title,
-                        "desc": book.desc,
-                        "author": book.author,
-                        "cover": book.cover,
-                        "type": book.type,
-                        "pb_date": book.pb_date,
-                        "price": book.price,
-                        "url": book.url}}
-
-def parseFavAmbiguous(dict):
-    fav_list = []
-    if dict != ['']:
-        for key in dict:
-            if key != '0':
-                fav_list.append(key)
-
-    return fav_list
+from bookmarket.methods import createUserData, getUserObject, getBookObject, parseFavAmbiguous
 
 
 @app.route("/")
@@ -112,25 +76,25 @@ def search(keyword):
 
     search = bw_scrape(keyword)
     
-    # try:
-    if username != "":
-        if (len(search) >= 1):
-            return render_template("list.html", search=search, username=username, fav_list=fav_list)
+    try:
+        if username != "":
+            if (len(search) >= 1):
+                return render_template("list.html", search=search, username=username, fav_list=fav_list)
+            else:
+                return render_template("empty.html", username=username)
+            
         else:
-            return render_template("empty.html", username=username)
+            if (len(search) >= 1):
+                return render_template("list.html", search=search)
+            else:
+                return render_template("empty.html")
         
-    else:
-        if (len(search) >= 1):
-            return render_template("list.html", search=search)
-        else:
-            return render_template("empty.html")
-        
-    # except Exception:
+    except Exception:
 
-    #     if username != "":
-    #         return render_template("error.html", username=username)
-    #     else:
-    #         return render_template("error.html")
+        if username != "":
+            return render_template("error.html", username=username)
+        else:
+            return render_template("error.html")
     
 @app.route("/item/<string:isbn>", methods=['GET', 'POST'])
 def book(isbn):
