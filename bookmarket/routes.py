@@ -5,9 +5,9 @@ from bookmarket.wordery import wd_scrape
 from bookmarket.classes import User
 from firebase_admin import db
 from bookmarket import app
+from datetime import datetime
 
-from bookmarket.methods import createUserData, getUserObject, getBookObject, parseFavAmbiguous
-
+from bookmarket.methods import createUserData, getUserObject, getBookObject, parseFavAmbiguous, updateRecentViewed
 
 @app.route("/")
 def welcome():
@@ -119,9 +119,13 @@ def book(isbn):
         except Exception:
             pass
 
+    search = bw_scrape(isbn)
+    now = str(datetime.now())
+    book_obj = {search[0].isbn: {"title": search[0].title, "cover": search[0].cover, "price": search[0].price, "date": now}}
+    updateRecentViewed(book_obj, session['email'], search[0].isbn)
+
     try:
         if username != "":
-            search = bw_scrape(isbn)
             return render_template("item.html", book=search[0], username=username, fav_list=fav_list)
         else:
             return render_template("item.html", book=search[0])
