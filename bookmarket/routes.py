@@ -177,6 +177,15 @@ def compare(isbn):
 @app.route("/signup", methods=["GET", "POST"])
 def signup():
 
+    username = ''
+    try:
+        username = session['username']
+    except Exception:
+        pass
+
+    if username != '':
+        return redirect(url_for('index'))
+
     if request.method == "POST":
         try:
             keyword = request.form['keyword']
@@ -213,6 +222,15 @@ def signup():
     
 @app.route("/login", methods=["GET", "POST"])
 def login():
+    
+    username = ''
+    try:
+        username = session['username']
+    except Exception:
+        pass
+
+    if username != '':
+        return redirect(url_for('index'))
 
     if request.method == "POST":
         try:
