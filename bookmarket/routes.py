@@ -7,7 +7,7 @@ from firebase_admin import db
 from bookmarket import app
 from datetime import datetime
 
-from bookmarket.methods import createUserData, getUserObject, getBookObject, parseFavAmbiguous, updateRecentViewed, parseRecentViewed
+from bookmarket.methods import createUserData, getUserObject, getBookObject, parseFavAmbiguous, updateRecentViewed, parseRecentViewed, retrieveFavList
 
 @app.route("/")
 def welcome():
@@ -261,6 +261,27 @@ def login():
     
     except Exception:
         return render_template("error.html")
+    
+
+@app.route("/favourite")
+def favourite():
+    username = ''
+    try:
+        username = session['username']
+        email = session['email']
+    except Exception:
+        pass
+
+    if username == '':
+        return redirect(url_for('login'))
+    
+    fav_list = retrieveFavList(email)
+    
+    try:
+        return render_template("favourite.html", username=username, fav_list=fav_list)
+    
+    except Exception:
+        return render_template("error.html", username=username, fav_list=fav_list)
 
 @app.route("/signout")
 def signout():

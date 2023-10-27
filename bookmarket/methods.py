@@ -1,5 +1,5 @@
 from firebase_admin import db
-from bookmarket.classes import User, Book, Blackwells, BookAmbiguous
+from bookmarket.classes import User, Book, BookAmbiguous
 from datetime import datetime
 
 def createUserData(user):
@@ -68,3 +68,21 @@ def parseRecentViewed(recent_list):
             parsed_recent.append(ambig_book)
 
     return parsed_recent
+
+def retrieveFavList(email):
+    fav_list = []
+    obj_list = db.reference('/{}/favourites'.format(email.replace(".", ","))).get()
+    for key in obj_list:
+        if key != '0':
+            fav_list.append(Book(
+                key, 
+                obj_list[key]['title'],
+                obj_list[key]['desc'],
+                obj_list[key]['author'],
+                obj_list[key]['cover'],
+                obj_list[key]['type'],
+                obj_list[key]['pb_date'],
+                obj_list[key]['price'],
+                obj_list[key]['url']))
+            
+    return fav_list
