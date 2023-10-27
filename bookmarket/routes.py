@@ -266,19 +266,35 @@ def login():
 @app.route("/favourite")
 def favourite():
     username = ''
+    fav_list = ['']
     try:
         username = session['username']
-        email = session['email']
+        user = getUserObject(session['email'])
+        fav_list = retrieveFavList(session['email']) if user.favourites != [''] else user.favourites
     except Exception:
         pass
 
     if username == '':
         return redirect(url_for('login'))
     
-    fav_list = retrieveFavList(email)
+    if request.method == "POST":
+        try:
+            keyword = request.form['keyword']
+            return redirect('/search/keyword={}'.format(keyword.replace(" ", "+")))
+        except Exception:
+            pass
+
+        try:
+            isbn = request.form['isbn']
+            return redirect('/compare/{}'.format(isbn))
+        except Exception:
+            pass
     
     try:
-        return render_template("favourite.html", username=username, fav_list=fav_list)
+        if len(fav_list) > 1:
+            return render_template("favourite.html", username=username, fav_list=fav_list)
+        else:
+            return render_template("empty.html", username=username)
     
     except Exception:
         return render_template("error.html", username=username, fav_list=fav_list)
