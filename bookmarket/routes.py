@@ -263,7 +263,7 @@ def login():
         return render_template("error.html")
     
 
-@app.route("/favourite")
+@app.route("/favourite", methods=['GET', 'POST'])
 def favourite():
     username = ''
     fav_list = ['']

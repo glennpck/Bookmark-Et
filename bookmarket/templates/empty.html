@@ -1,4 +1,32 @@
 {% extends 'base.html' %}
 {% block body %}
-<div style="background-image:url('https://i.pinimg.com/originals/de/ca/c7/decac7a4463acf48411ae80b88512161.gif')"></div>
+<style>
+    .notfound-bear {
+        display: block;
+        margin-left: 50%;
+        margin-right: auto;
+        opacity: 25%;
+    }
+    
+    .emptytext {
+        margin: auto;
+    }
+
+    .emptytext p {
+        font-size: 20px;
+
+    }
+
+</style>
+<div class="container">
+    <div class="row">
+        <div class="col bear">
+            <img class='notfound-bear' src='https://i.pinimg.com/originals/de/ca/c7/decac7a4463acf48411ae80b88512161.gif' />
+        </div>
+        <div class="col emptytext">
+            <h1>We got nothing...</h1>
+            <p>Head back <a href="{{url_for('index')}}" style="font-weight: bold;text-decoration: underline;">home?</a></p>
+        </div>
+    </div>
+</div>
 {% endblock %}
