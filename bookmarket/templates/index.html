@@ -36,22 +36,29 @@
 				<h4 class="elementary-title">Recently Viewed</h4>
 			</div><!--section-header-->
 		</div>
-		{% endif %}
+		
 		<div class="swiper products-carousel">
 
 			<div class="swiper-wrapper">
-				{% if recent_viewed != [''] %}
 				{% for book in recent_viewed %}
 				<div class="swiper-slide product-card link-effect">
+				<form role="get-detail" method="POST" action="">
 					<figure class="zoom-effect">
-						<a href="#" class="zoom-in"><img src="{{book.cover[0]}}" alt="stories" class="lgpostImg img-fluid"></a>
+						<button type="submit" style="background: none; border: none;">
+							<input type="hidden" value="{{book.isbn}}" name="isbn" required />
+							<a href="#" class="zoom-in"><img src="{{book.cover[0]}}" alt="stories" class="lgpostImg img-fluid"></a>
+						</button>
 					</figure>
 					<div class="story-title-wrap my-3 d-flex justify-content-between">
 						<div class="recent-title">
 							<h3 class="story-title"><a href="#">{{book.title[:30] + "..." if book.title|length > 30 else book.title}}</a></h3>
 						</div>
-						<a class="price" href="#" data-after="SEE MORE"><span>{{book.price}}</span></a>
+						<button type="submit" style="background: none; border: none;">
+							<input type="hidden" value="{{book.isbn}}" name="isbn" required />
+							<a class="price" href="#" data-after="SEE MORE"><span>{{book.price}}</span></a>
+						</button>
 					</div>
+				</form>
 				</div>
 				{% endfor %}
 				{% endif %}

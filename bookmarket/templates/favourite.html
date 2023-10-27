@@ -313,6 +313,7 @@
     }
 </style> 
 <div class="container">
+    {% if fav_list != [''] %}
     {% for book in fav_list %}
     <div class="product-content product-wrap clearfix">
         <div class="row">
@@ -362,6 +363,7 @@
         </div>
     </div>
     {% endfor %}
+    {% endif %}
 </div>
 <script>
     const buttons = document.getElementsByClassName("fav-button")

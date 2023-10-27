@@ -291,7 +291,7 @@ def favourite():
             pass
     
     try:
-        if len(fav_list) > 1:
+        if len(fav_list) >= 1 and fav_list != ['']:
             return render_template("favourite.html", username=username, fav_list=fav_list)
         else:
             return render_template("empty.html", username=username)
