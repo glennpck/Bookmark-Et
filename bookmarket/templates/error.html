@@ -1,4 +1,34 @@
 {% extends 'base.html' %}
 {% block body %}
-<div>error</div>
+<style>
+    .error-bear {
+        display: block;
+        margin-left: 50%;
+        margin-right: auto;
+        opacity: 25%;
+        height: 300px;
+        width: 300px;
+    }
+    
+    .errortext {
+        margin: auto;
+    }
+
+    .errortext p {
+        font-size: 20px;
+
+    }
+
+</style>
+<div class="container">
+    <div class="row">
+        <div class="col bear">
+            <img class='error-bear' src='https://media.tenor.com/wSQJhxkH7IUAAAAC/polar-bear-white-bear.gif' />
+        </div>
+        <div class="col errortext">
+            <h1>Oops! Something went wrong...</h1>
+            <p>Head back <a href="{{url_for('index')}}" style="font-weight: bold;text-decoration: underline;">home?</a></p>
+        </div>
+    </div>
+</div>
 {% endblock %}
