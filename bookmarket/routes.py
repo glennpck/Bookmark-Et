@@ -122,9 +122,10 @@ def book(isbn):
             pass
 
     search = bw_scrape(isbn)
-    now = str(datetime.now())
-    book_obj = {search[0].isbn: {"isbn": search[0].isbn, "title": search[0].title, "cover": search[0].cover, "price": search[0].price, "date": now}}
-    updateRecentViewed(book_obj, session['email'], search[0].isbn)
+    if username != "":
+        now = str(datetime.now())
+        book_obj = {search[0].isbn: {"isbn": search[0].isbn, "title": search[0].title, "cover": search[0].cover, "price": search[0].price, "date": now}}
+        updateRecentViewed(book_obj, session['email'], search[0].isbn)
 
     try:
         if username != "":
