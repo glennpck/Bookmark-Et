@@ -49,6 +49,8 @@
 							<a href="#" class="zoom-in"><img src="{{book.cover[0]}}" alt="stories" class="lgpostImg img-fluid"></a>
 						</button>
 					</figure>
+				</form>
+				<form role="get-detail" method="POST" action="">
 					<div class="story-title-wrap my-3 d-flex justify-content-between">
 						<div class="recent-title">
 							<h3 class="story-title"><a href="#">{{book.title[:30] + "..." if book.title|length > 30 else book.title}}</a></h3>
