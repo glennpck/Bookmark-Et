@@ -48,7 +48,8 @@ class GeneralReview():
         self.reviewList= reviewList
 
 class Review():
-    def __init__(self, value, content, date):
+    def __init__(self, username, value, content, date):
+        self.username = username
         self.value = value
         self.content = content
         self.date = date
