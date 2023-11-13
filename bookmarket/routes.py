@@ -49,6 +49,39 @@ def index():
             return render_template("error.html", username=username)
         else:
             return render_template("error.html")
+        
+@app.route("/information", methods=['GET', 'POST'])
+def info():
+    username = ""
+    try:
+        username = session['username']
+    except Exception:
+        pass
+
+    if request.method == "POST":
+        try:
+            keyword = request.form['keyword']
+            return redirect('/search/keyword={}'.format(keyword.replace(" ", "+")))
+        except Exception:
+            pass
+
+        try:
+            isbn = request.form['isbn']
+            return redirect('/item/{}'.format(isbn))
+        except Exception:
+            pass
+
+    try:
+        if username != "":
+            return render_template("info.html", username=username)
+        else:
+            return render_template("info.html")
+    
+    except Exception:
+        if username != "":
+            return render_template("error.html", username=username)
+        else:
+            return render_template("error.html")
     
 @app.route("/search/keyword=<string:keyword>", methods=['GET', 'POST'])
 def search(keyword):
