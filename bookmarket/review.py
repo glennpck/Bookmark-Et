@@ -56,4 +56,48 @@ def bwCompileTopReviews(parse):
 
     return reviewList
 
-    
+def wdReviews():
+    resp = httpx.get(urlwd)
+    parse = HTMLParser(resp.text)
+
+    strong = parse.css("strong")
+    value = strong[0].text(strip=True)
+    count = str(strong[1].text(strip=True)).remove(',')
+
+    reviewList = wdCompileTopReviews(parse)
+
+    return GeneralReview(
+        "Wordery",
+        value,
+        count,
+        reviewList
+    )
+
+def wdCompileTopReviews(parse):
+    reviewList = []
+    cardCounter = 0
+
+    for card in parse.css("div.Review"):
+        if cardCounter < 3:
+            username = card.css_first("a.Review__author").text(strip=True)
+
+            stars = card.css("i.stars__icon")
+            value = len(stars)
+
+            content = str(card.css_first("span.Review__body").text(strip=True))[1:-1]
+
+            date = card.css_first("div.Review__dateSource").text(strip=True)[7:]
+
+            reviewList.append(Review(
+                username,
+                value,
+                content,
+                date
+            ))
+            
+            cardCounter += 1
+        
+        else:
+            break
+
+    return reviewList
