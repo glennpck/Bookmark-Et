@@ -39,3 +39,16 @@ class BookAmbiguous():
         self.title = title
         self.cover = cover
         self.price = price
+
+class GeneralReview():
+    def __init__(self, platform, value, count, reviewList):
+        self.platform = platform
+        self.value = value
+        self.count = count
+        self.reviewList= reviewList
+
+class Review():
+    def __init__(self, value, content, date):
+        self.value = value
+        self.content = content
+        self.date = date
