@@ -76,17 +76,17 @@ def info():
     reviews.append(bwReviews())
     reviews.append(wdReviews())
 
-    # try:
-    if username != "":
-        return render_template("info.html", username=username, reviews = reviews)
-    else:
-        return render_template("info.html", reviews = reviews)
+    try:
+        if username != "":
+            return render_template("info.html", username=username, reviews = reviews)
+        else:
+            return render_template("info.html", reviews = reviews)
     
-    # except Exception:
-    #     if username != "":
-    #         return render_template("error.html", username=username)
-    #     else:
-    #         return render_template("error.html")
+    except Exception:
+        if username != "":
+            return render_template("error.html", username=username)
+        else:
+            return render_template("error.html")
     
 @app.route("/search/keyword=<string:keyword>", methods=['GET', 'POST'])
 def search(keyword):
