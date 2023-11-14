@@ -1,3 +1,82 @@
 {% extends 'base.html' %}
 {% block body %}
+
+<style>
+
+    .main-content {
+        margin-top: 4em;
+    }
+
+    .company-icon>img {
+        min-height: 220px;
+    }
+
+    .review {
+        border-bottom: 1px solid rgb(175, 175, 175);
+    }
+
+    .values {
+        margin-top: 2em;
+    }
+
+    #btnControl {
+        display: none;
+    }
+
+    .review-list-arrow {
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        -webkit-box-align: center;
+        align-items: center;
+    }
+
+    .review-list-arrow i {
+        padding: 20px;
+        display: block;
+        transition: all 0.4s ease;
+    }
+
+    #btnControl:checked + label > i {
+        transform: rotateZ(-180deg);
+    }
+
+</style>
+
+<div class="container main-content">
+
+    <div class="row review">
+        <div class="col-sm company-icon">
+            <img src="{{bwReview.icon}}" />
+        </div>
+        <div class="col-sm">
+            <div class="values">
+                <h1>{{bwReview.platform}}</h1>
+                <h2>Rating: {{bwReview.value}}
+                    <svg class="bi" width="20" height="20"><use xlink:href="#star-fill"></use></svg>
+                </h2>
+                <h3>Review Count: {{bwReview.count}}</h3>
+            </div>
+        </div>
+        <div class="col-sm">
+        </div>
+
+        <div class="collapse" id="collapseExample">
+            <div class="card card-body" style="border: none;">
+                Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
+            </div>
+        </div>
+
+        <div class="review-list-arrow">
+            <input type="checkbox" id="btnControl" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false">
+                <label for="btnControl">
+                    <i class='fa fa-angle-down' style='font-size:60px'></i>
+                </label>
+            </input>
+        </div>
+    </div>
+</div>
+
 {% endblock %}

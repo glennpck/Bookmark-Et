@@ -2,6 +2,7 @@ from flask import Flask, render_template, url_for, flash, redirect, request, ses
 from bookmarket import bcrypt
 from bookmarket.blackwells import bw_scrape
 from bookmarket.wordery import wd_scrape
+from bookmarket.review import bwReviews, wdReviews
 from bookmarket.classes import User
 from firebase_admin import db
 from bookmarket import app
@@ -71,11 +72,14 @@ def info():
         except Exception:
             pass
 
+    bwReview = bwReviews()
+    wdReview = wdReviews()
+
     try:
         if username != "":
-            return render_template("info.html", username=username)
+            return render_template("info.html", username=username, bwReview = bwReview, wdReview = wdReview)
         else:
-            return render_template("info.html")
+            return render_template("info.html", bwReview = bwReview, wdReview = wdReview)
     
     except Exception:
         if username != "":

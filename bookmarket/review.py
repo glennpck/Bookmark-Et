@@ -10,6 +10,8 @@ def bwReviews():
     resp = httpx.get(urlbw)
     parse = HTMLParser(resp.text)
 
+    icon = str(parse.css_first("img.business-profile-image_image__jCBDc").attributes['src'])
+
     value = parse.css_first("p.typography_body-l__KUYFJ").text(strip=True, deep=False)
     
     count = ""
@@ -20,7 +22,8 @@ def bwReviews():
     reviewList = bwCompileTopReviews(parse)
 
     return GeneralReview(
-        "Blackwells",
+        "Blackwells.co.uk",
+        icon,
         value,
         count,
         reviewList
@@ -60,14 +63,17 @@ def wdReviews():
     resp = httpx.get(urlwd)
     parse = HTMLParser(resp.text)
 
+    icon = str(parse.css_first("img.LogoComponent__image ").attributes['src'])
+
     strong = parse.css("strong")
     value = strong[0].text(strip=True)
-    count = str(strong[1].text(strip=True)).remove(',')
+    count = str(strong[1].text(strip=True)).replace(',', '')
 
     reviewList = wdCompileTopReviews(parse)
 
     return GeneralReview(
-        "Wordery",
+        "Wordery.com Ltd",
+        icon,
         value,
         count,
         reviewList

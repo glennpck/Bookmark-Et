@@ -41,8 +41,9 @@ class BookAmbiguous():
         self.price = price
 
 class GeneralReview():
-    def __init__(self, platform, value, count, reviewList):
+    def __init__(self, platform, icon, value, count, reviewList):
         self.platform = platform
+        self.icon = icon
         self.value = value
         self.count = count
         self.reviewList= reviewList
