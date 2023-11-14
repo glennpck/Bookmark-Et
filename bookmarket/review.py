@@ -23,6 +23,7 @@ def bwReviews():
 
     return GeneralReview(
         "Blackwells.co.uk",
+        "Trustpilot",
         icon,
         value,
         count,
@@ -73,6 +74,7 @@ def wdReviews():
 
     return GeneralReview(
         "Wordery.com Ltd",
+        "Reviews.io",
         icon,
         value,
         count,
