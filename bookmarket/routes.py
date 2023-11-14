@@ -72,20 +72,21 @@ def info():
         except Exception:
             pass
 
-    bwReview = bwReviews()
-    wdReview = wdReviews()
+    reviews = []
+    reviews.append(bwReviews())
+    reviews.append(wdReviews())
 
-    try:
-        if username != "":
-            return render_template("info.html", username=username, bwReview = bwReview, wdReview = wdReview)
-        else:
-            return render_template("info.html", bwReview = bwReview, wdReview = wdReview)
+    # try:
+    if username != "":
+        return render_template("info.html", username=username, reviews = reviews)
+    else:
+        return render_template("info.html", reviews = reviews)
     
-    except Exception:
-        if username != "":
-            return render_template("error.html", username=username)
-        else:
-            return render_template("error.html")
+    # except Exception:
+    #     if username != "":
+    #         return render_template("error.html", username=username)
+    #     else:
+    #         return render_template("error.html")
     
 @app.route("/search/keyword=<string:keyword>", methods=['GET', 'POST'])
 def search(keyword):

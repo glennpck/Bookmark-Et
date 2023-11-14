@@ -8,7 +8,8 @@
     }
 
     .company-icon>img {
-        min-height: 220px;
+        min-height: 200px;
+        max-height: 200px;
     }
 
     .review {
@@ -17,10 +18,7 @@
 
     .values {
         margin-top: 2em;
-    }
-
-    #btnControl {
-        display: none;
+        margin-left: 6em;
     }
 
     .review-list-arrow {
@@ -39,7 +37,11 @@
         transition: all 0.4s ease;
     }
 
-    #btnControl:checked + label > i {
+    #btnControl1:checked + label > i {
+        transform: rotateZ(-180deg);
+    }
+
+    #btnControl2:checked + label > i {
         transform: rotateZ(-180deg);
     }
 
@@ -47,36 +49,39 @@
 
 <div class="container main-content">
 
+    {% for review in reviews %}
+
     <div class="row review">
         <div class="col-sm company-icon">
-            <img src="{{bwReview.icon}}" />
+            <img src="{{review.icon}}" />
         </div>
         <div class="col-sm">
             <div class="values">
-                <h1>{{bwReview.platform}}</h1>
-                <h2>Rating: {{bwReview.value}}
+                <h1>{{review.platform}}</h1>
+                <h2>Rating: {{review.value}}
                     <svg class="bi" width="20" height="20"><use xlink:href="#star-fill"></use></svg>
                 </h2>
-                <h3>Review Count: {{bwReview.count}}</h3>
+                <h3>Review Count: {{review.count}}</h3>
             </div>
         </div>
         <div class="col-sm">
         </div>
 
-        <div class="collapse" id="collapseExample">
+        <div class="collapse" id="collapse{{loop.index}}">
             <div class="card card-body" style="border: none;">
                 Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
             </div>
         </div>
 
         <div class="review-list-arrow">
-            <input type="checkbox" id="btnControl" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false">
-                <label for="btnControl">
+            <input type="checkbox" style="display: none;" id="btnControl{{loop.index}}" data-bs-toggle="collapse" data-bs-target="#collapse{{loop.index}}" aria-expanded="false">
+                <label for="btnControl{{loop.index}}">
                     <i class='fa fa-angle-down' style='font-size:60px'></i>
                 </label>
             </input>
         </div>
     </div>
+    {% endfor %}
 </div>
 
 {% endblock %}
