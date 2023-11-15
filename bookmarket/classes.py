@@ -17,6 +17,7 @@ class Book:
         self.type = type
         self.pb_date = pb_date
         self.price = price
+        self.new_price = 0
         self.url = url
 
 class Blackwells(Book):

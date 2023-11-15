@@ -8,7 +8,7 @@ from firebase_admin import db
 from bookmarket import app
 from datetime import datetime
 
-from bookmarket.methods import createUserData, getUserObject, getBookObject, parseFavAmbiguous, updateRecentViewed, parseRecentViewed, retrieveFavList
+from bookmarket.methods import createUserData, getUserObject, getBookObject, parseFavAmbiguous, updateRecentViewed, parseRecentViewed, retrieveFavList, tracking
 
 @app.route("/")
 def welcome():
@@ -23,6 +23,7 @@ def index():
         username = session['username']
         user = getUserObject(session['email'])
         recent_list = parseRecentViewed(user.recent_viewed) if user.recent_viewed != [''] else user.recent_viewed
+        favList = retrieveFavList(session['email']) if user.favourites != [''] else user.favourites
     except Exception:
         pass
 
@@ -39,6 +40,11 @@ def index():
         except Exception:
             pass
     
+    if username != "":
+        trackingList = tracking(favList) if user.favourites != [''] else []
+        if len(trackingList) != 0:
+            flash('{} titles have price updates! Go to Favourites to see more'.format(len(trackingList)), 'info')
+
     try:
         if username != "":
             return render_template("index.html", username=username, recent_viewed=recent_list)

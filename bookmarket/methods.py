@@ -1,6 +1,9 @@
 from firebase_admin import db
 from bookmarket.classes import User, Book, BookAmbiguous
 from datetime import datetime
+import re
+import httpx
+from selectolax.parser import HTMLParser
 
 def createUserData(user):
     username = user.username
@@ -86,3 +89,21 @@ def retrieveFavList(email):
                 obj_list[key]['url']))
             
     return fav_list
+
+def tracking(favList):
+    updateList = []
+    exp = "\d+\.\d+"
+    for book in favList:
+        url = "https://blackwells.co.uk/bookshop/product/{}".format(book.isbn)
+        r = httpx.get(url)
+        new_price_str = getNewPrice(HTMLParser(r.text))
+        new_price = float(re.findall(exp, new_price_str)[0])
+        origin_price = float(re.findall(exp, book.price)[0])
+        if new_price != origin_price:
+            book.new_price = new_price_str
+            updateList.append(book)
+    return updateList
+
+def getNewPrice(page):
+    return page.css_first("li.product-price--current").text(strip=True, deep=False)
+        
