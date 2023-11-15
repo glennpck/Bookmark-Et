@@ -45,6 +45,14 @@
         transform: rotateZ(-180deg);
     }
 
+    .delivery-link {
+        display: block;
+        width: 30px;
+        font-size: 30px;
+        margin: auto;
+        margin-top: 1em;
+    }
+
 </style>
 
 <div class="container main-content">
@@ -66,6 +74,9 @@
             </div>
         </div>
         <div class="col-sm">
+            <a class="delivery-link" href="{{review.delivery}}" target="_blank" rel="noopener noreferrer">
+                View Delivery Rates<i class='fa fa-angle-right' style='font-size:60px'></i>
+            </a>
         </div>
 
         <div class="collapse" id="collapse{{loop.index}}">

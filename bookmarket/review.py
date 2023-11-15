@@ -28,7 +28,8 @@ def bwReviews():
         icon,
         value,
         count,
-        reviewList
+        reviewList,
+        'https://blackwells.co.uk/bookshop/delivery'
     )
 
 def bwCompileTopReviews(parse):
@@ -80,7 +81,8 @@ def wdReviews():
         icon,
         value,
         count,
-        reviewList
+        reviewList,
+        'https://wordery.com/cs/help#faq-delivery'
     )
 
 def wdCompileTopReviews(parse):

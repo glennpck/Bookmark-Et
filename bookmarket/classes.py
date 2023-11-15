@@ -41,7 +41,7 @@ class BookAmbiguous():
         self.price = price
 
 class GeneralReview():
-    def __init__(self, platform, origin, url, icon, value, count, reviewList):
+    def __init__(self, platform, origin, url, icon, value, count, reviewList, delivery):
         self.platform = platform
         self.origin = origin
         self.url = url
@@ -49,6 +49,7 @@ class GeneralReview():
         self.value = value
         self.count = count
         self.reviewList= reviewList
+        self.delivery = delivery
 
 class Review():
     def __init__(self, username, value, content, date):
