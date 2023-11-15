@@ -91,7 +91,7 @@ def retrieveFavList(email):
     return fav_list
 
 def tracking(favList):
-    updateList = []
+    updateFavList = []
     exp = "\d+\.\d+"
     for book in favList:
         url = "https://blackwells.co.uk/bookshop/product/{}".format(book.isbn)
@@ -101,8 +101,8 @@ def tracking(favList):
         origin_price = float(re.findall(exp, book.price)[0])
         if new_price != origin_price:
             book.new_price = new_price_str
-            updateList.append(book)
-    return updateList
+        updateFavList.append(book)
+    return updateFavList
 
 def getNewPrice(page):
     return page.css_first("li.product-price--current").text(strip=True, deep=False)

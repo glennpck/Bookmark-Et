@@ -23,7 +23,7 @@ def index():
         username = session['username']
         user = getUserObject(session['email'])
         recent_list = parseRecentViewed(user.recent_viewed) if user.recent_viewed != [''] else user.recent_viewed
-        favList = retrieveFavList(session['email']) if user.favourites != [''] else user.favourites
+        fav_list = retrieveFavList(session['email']) if user.favourites != [''] else user.favourites
     except Exception:
         pass
 
@@ -41,9 +41,13 @@ def index():
             pass
     
     if username != "":
-        trackingList = tracking(favList) if user.favourites != [''] else []
-        if len(trackingList) != 0:
-            flash('{} titles have price updates! Go to Favourites to see more'.format(len(trackingList)), 'info')
+        fav_list = tracking(fav_list) if user.favourites != [''] else []
+        track = 0
+        for fav in fav_list:
+            if fav.new_price != 0:
+                track += 1
+        if track != 0:
+            flash('{} titles have price updates! Go to Favourites to see more'.format(track), 'info')
 
     try:
         if username != "":
@@ -334,6 +338,8 @@ def favourite():
             return redirect('/compare/{}'.format(isbn))
         except Exception:
             pass
+
+    fav_list = tracking(fav_list) if user.favourites != [''] else []
     
     try:
         if len(fav_list) >= 1 and fav_list != ['']:

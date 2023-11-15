@@ -339,7 +339,12 @@
                         <span>{{book.type}} {{book.pb_date}}</span>
                     </h5>
                     <p class="price-container">
-                        <span style="font-weight: bold">{{book.price}}</span>
+                        {% if book.new_price != 0 %}
+                        <span style="font-weight: bold; text-decoration: line-through;">{{book.price}}</span>
+                        <span style="font-weight: bold;">{{book.new_price}}</span>
+                        {% else %}
+                        <span style="font-weight: bold;">{{book.price}}</span>
+                        {% endif %}
                     </p>
                 </div>
                 <div class="description">
