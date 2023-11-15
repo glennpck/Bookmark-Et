@@ -369,3 +369,11 @@ def render_favourite():
     elif book[0].isbn in fav_dict:
         db.reference('/{}/favourites/{}'.format(session['email'].replace(".",","), book[0].isbn)).delete()
     return isbn
+
+@app.route("/updateFavourite")
+def update_favourite():
+    isbn = request.args.get('book')
+    print(isbn)
+    book = bw_scrape(isbn)
+    db.reference('/{}/favourites'.format(session['email'].replace(".",","))).update(getBookObject(book[0]))
+    return isbn

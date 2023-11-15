@@ -318,8 +318,12 @@
     <div class="product-content product-wrap clearfix">
         <div class="row">
                 <div class="col-md-5 col-sm-12 col-xs-12 text-center">
-                    <div class="product-image"> 
-                        <img src="{{book.cover[1]}}" alt="332x500" class="img-responsive"> 
+                    <div class="product-image">
+                        {% if book.new_price != 0 %}
+                        <img src="{{book.cover[1]}}" onload="updateFavourite('{{loop.index}}')" alt="332x500" class="img-responsive"> 
+                        {% else %}
+                        <img src="{{book.cover[1]}}" alt="332x500" class="img-responsive">
+                        {% endif %}
                     </div>
                 </div>
                 <div class="col-md-7 col-sm-12 col-xs-12">
@@ -376,22 +380,6 @@
         buttons[i].addEventListener("click", function(e) {
             e.preventDefault()
         })
-    }
-
-    async function renderFavourites(loop_index) {
-        heart_icon = "#heart-icon";
-        selector = heart_icon.concat(loop_index);
-        var element = document.querySelector(selector);
-        if (element.classList.contains("fa-heart-o")) {
-            element.classList.replace("fa-heart-o", "fa-heart");
-        }
-        else if (element.classList.contains("fa-heart")) {
-            element.classList.replace("fa-heart", "fa-heart-o");
-        }
-        common_id = "fav-button"
-        id = common_id.concat(loop_index)
-        isbn = document.getElementById(id).value;
-        const favourite = await fetch("/renderFavourite?book="+isbn);
     }
 </script>
 {% endblock %}
