@@ -373,7 +373,6 @@ def render_favourite():
 @app.route("/updateFavourite")
 def update_favourite():
     isbn = request.args.get('book')
-    print(isbn)
     book = bw_scrape(isbn)
     db.reference('/{}/favourites'.format(session['email'].replace(".",","))).update(getBookObject(book[0]))
     return isbn
