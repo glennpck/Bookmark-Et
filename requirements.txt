@@ -1,0 +1,6 @@
+Flask
+Flask-Bcrypt
+httpx
+selectolax
+firebase_admin
+python-dotenv

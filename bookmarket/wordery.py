@@ -1,10 +1,10 @@
 import httpx
 from selectolax.parser import HTMLParser
 from bookmarket.classes import Wordery
-from forex_python.converter import CurrencyRates
-from decimal import Decimal
+# from forex_python.converter import CurrencyRates
+# from decimal import Decimal
 
-c = CurrencyRates(force_decimal=True)
+# c = CurrencyRates(force_decimal=True)
 wd_url = 'https://wordery.com'
 
 def search(isbn):
