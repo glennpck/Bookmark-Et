@@ -56,8 +56,6 @@ docker build -t bookmarket .
 docker run -p 5000:5000 bookmarket
 ```
 
-## **About**
-
 ## Overview
 
 An information terminal that provides details regarding books. The terminal provides useful information regarding book prices, publishing dates, distributor reviews and ratings, etc.
