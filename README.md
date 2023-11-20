@@ -62,7 +62,7 @@ An information terminal that provides details regarding books. The terminal prov
 
 ## Base Platform
 
-The base platform of the application uses [Blackwells Book Store](https://blackwells.co.uk/bookshop/home) as Blackwells is the current globally leading online bookshop that rarely has titles running out of stock and has a wide variety of books for sale.
+The base platform of the application uses [Blackwells Book Store](https://blackwells.co.uk/bookshop/home) as Blackwells is the current global leading online bookshop that rarely has titles running out of stock and has a wide variety of books for sale.
 
 ## What it does
 
