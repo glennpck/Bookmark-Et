@@ -5,7 +5,7 @@ Bookmark-Et | Knowledge About Knowledge
 ## Prerequisites
 
 - Python 3.11.5 and above : [Install Here](https://www.python.org/downloads/)
-- Docker Desktop : [Install Here](https://www.docker.com/products/docker-desktop/)
+- Docker Desktop (Optional) : [Install Here](https://www.docker.com/products/docker-desktop/)
 
 ## Project Structure
 
@@ -54,6 +54,11 @@ Bookmark-Et | Knowledge About Knowledge
 ```bash
 docker build -t bookmarket .
 docker run -p 5000:5000 bookmarket
+```
+
+## **Build with CMD**
+```bash
+python run.py
 ```
 
 ## Overview
