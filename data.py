@@ -41,5 +41,5 @@ while cardCounter < 10000:
     print(page_counter)
     page_counter += 1
 
-with pd.ExcelWriter("bw_reviews.xlsx") as writer:
+with pd.ExcelWriter("bw_reviews.xlsx", engine="xlsxwriter") as writer:
     reviews.to_excel(writer, sheet_name="reviews")
