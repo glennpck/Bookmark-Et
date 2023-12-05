@@ -53,6 +53,10 @@
         margin-top: 1em;
     }
 
+    .sentiment {
+        display: inline-block;
+    }
+
 </style>
 
 <div class="container main-content">
@@ -90,6 +94,48 @@
                 <h5>{{i.content}}</h5>
             </div>
             {% endfor %}
+            {% if review.platform == "Blackwells.co.uk" %}
+            <div class="card card-body" style="border: 1px solid rgb(119, 119, 119); margin-top: 1em">
+                <h4>5
+                    <svg class="bi" width="20" height="20"><use xlink:href="#star-fill"></use></svg> -
+                    <p class="sentiment"> Easy: 3295 |</p>
+                    <p class="sentiment"> Price: 1971 |</p>
+                    <p class="sentiment"> Service: 915 |</p>
+                    <p class="sentiment"> Selection: 463 |</p>
+                    <p class="sentiment"> Quick: 967 | </p>
+                </h4>
+                <h4>4
+                    <svg class="bi" width="20" height="20"><use xlink:href="#star-fill"></use></svg> -
+                    <p class="sentiment"> Easy: 175 |</p>
+                    <p class="sentiment"> Price: 127 |</p>
+                    <p class="sentiment"> Service: 62 |</p>
+                </h4>
+                <h4>3
+                    <svg class="bi" width="20" height="20"><use xlink:href="#star-fill"></use></svg> -
+                    <p class="sentiment"> Time: 70 |</p>
+                    <p class="sentiment"> Packaging: 11 |</p>
+                    <p class="sentiment"> Service: 22 |</p>
+                    <p class="sentiment"> Spoilt: 1 |</p>
+                    <p class="sentiment"> Ripped: 1 | </p>
+                </h4>
+                <h4>2
+                    <svg class="bi" width="20" height="20"><use xlink:href="#star-fill"></use></svg> -
+                    <p class="sentiment"> Delivery: 29 |</p>
+                    <p class="sentiment"> Days: 21 |</p>
+                    <p class="sentiment"> Weeks: 16 |</p>
+                    <p class="sentiment"> Service: 16 |</p>
+                    <p class="sentiment"> Damaged: 11 | </p>
+                </h4>
+                <h4>1
+                    <svg class="bi" width="20" height="20"><use xlink:href="#star-fill"></use></svg> -
+                    <p class="sentiment"> Waiting: 36 |</p>
+                    <p class="sentiment"> Days: 116 |</p>
+                    <p class="sentiment"> Weeks: 69 |</p>
+                    <p class="sentiment"> Service: 56 |</p>
+                    <p class="sentiment"> Damaged: 23 | </p>
+                </h4>
+            </div>
+            {% endif %}
         </div>
 
         <div class="review-list-arrow">
