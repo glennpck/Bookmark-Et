@@ -78,3 +78,5 @@ The terminal scrapes data from its base platform and displays the results in its
 If users choose to register an account, they will be able to collate a list of their favourite titles and have it stored in the database. Upon logging in, users will receive price updates on their favourite titles on the homepage (if any). The favourites tab will display the original price and the updated price.
 
 ## Demo
+
+https://www.youtube.com/watch?v=CZ3AazPyY5c
